@@ -26,3 +26,9 @@ transform = Transform3D(0.786472, -0.233574, 0.571756, 0, 0.925732, 0.37818, -0.
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.398182, 0.753744, -0.522801, -0.0665359, 0.592161, 0.803068, 0.91489, -0.284982, 0.285939, 0, 16.6962, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
