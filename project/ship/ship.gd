@@ -2,11 +2,11 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 
+@onready var camera_mount := $CameraMount
+
 
 func _physics_process(_delta):
-	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = _get_camera_oriented_input()
 
 	if direction:
 		velocity.x = direction.x * SPEED
@@ -25,3 +25,16 @@ func _physics_process(_delta):
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 
 	move_and_slide()
+
+
+func _get_camera_oriented_input() -> Vector3:
+	var raw_input := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+
+	var input := Vector3.ZERO
+	# This is to ensure that diagonal input isn't stronger than axis aligned input
+	input.x = raw_input.x * sqrt(1.0 - raw_input.y * raw_input.y / 2.0)
+	input.z = raw_input.y * sqrt(1.0 - raw_input.x * raw_input.x / 2.0)
+
+	input = camera_mount.global_transform.basis * input
+	input.y = 0.0
+	return input

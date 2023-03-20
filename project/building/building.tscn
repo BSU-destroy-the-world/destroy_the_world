@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=3 uid="uid://bk8n1ede05bb0"]
+
+[ext_resource type="Script" path="res://building/building.gd" id="1_dootp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_egh40"]
+size = Vector3(5, 22, 5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hfv4r"]
+points = PackedVector3Array(2.5, 10.9016, 2.5, -2.5, -10.4276, -2.5, -2.5, -10.4276, 2.38889, 2.5, -10.9016, 2.5, 2.38889, -10.4276, -2.5, -2.5, 10.4276, -2.5, -2.5, 10.4276, 2.38889, 2.38889, 10.4276, -2.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ei2wd"]
+size = Vector3(0.4, 0.4, 0.4)
+
+[sub_resource type="Animation" id="Animation_mlele"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w82f1"]
+resource_name = "destroy"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StaticBody3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -22, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tklft"]
+_data = {
+"RESET": SubResource("Animation_mlele"),
+"destroy": SubResource("Animation_w82f1")
+}
+
+[node name="Building" type="Node3D"]
+script = ExtResource("1_dootp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
+mesh = SubResource("BoxMesh_egh40")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
+shape = SubResource("ConvexPolygonShape3D_hfv4r")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 32
+lifetime = 0.5
+randomness = 0.1
+mesh = SubResource("BoxMesh_ei2wd")
+emission_shape = 3
+emission_box_extents = Vector3(3, 1, 3)
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 12.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tklft")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

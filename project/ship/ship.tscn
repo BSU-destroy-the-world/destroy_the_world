@@ -1,18 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://rl3xprstjp30"]
+[gd_scene load_steps=5 format=3 uid="uid://rl3xprstjp30"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_bnpta"]
+[ext_resource type="Script" path="res://ship/camera_controller.gd" id="2_p13yg"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_gap3r"]
+radius = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rd5kt"]
-size = Vector3(1.3, 1.3, 2.7)
+size = Vector3(1.8, 0.9, 1.8)
 
-[node name="ship" type="CharacterBody3D"]
+[node name="Ship" type="CharacterBody3D"]
 script = ExtResource("1_bnpta")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 3, 0, 0, 0)
 mesh = SubResource("SphereMesh_gap3r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_rd5kt")
+
+[node name="CameraMount" type="Node3D" parent="." node_paths=PackedStringArray("camera", "target", "focus")]
+script = ExtResource("2_p13yg")
+camera = NodePath("Camera3D")
+target = NodePath("Target")
+focus = NodePath("Focus")
+
+[node name="Camera3D" type="Camera3D" parent="CameraMount"]
+transform = Transform3D(1, 0, 0, 0, 0.970296, 0.241922, 0, -0.241922, 0.970296, 0, 1.9, 4.5)
+top_level = true
+
+[node name="Target" type="Node3D" parent="CameraMount"]
+transform = Transform3D(1, 0, 0, 0, 0.970296, 0.241922, 0, -0.241922, 0.970296, 0, 1.9, 4.5)
+
+[node name="Focus" type="Node3D" parent="CameraMount"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

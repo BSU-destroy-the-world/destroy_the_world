@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://0qaklcemfar0"]
+[gd_scene load_steps=5 format=3 uid="uid://0qaklcemfar0"]
 
 [ext_resource type="PackedScene" uid="uid://rl3xprstjp30" path="res://ship/ship.tscn" id="1_8bswx"]
+[ext_resource type="PackedScene" uid="uid://bk8n1ede05bb0" path="res://building/building.tscn" id="2_yk2g2"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_x3bjd"]
 size = Vector2(50, 50)
@@ -21,9 +22,6 @@ shape = SubResource("ConcavePolygonShape3D_kmk48")
 [node name="ship" parent="." instance=ExtResource("1_8bswx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78146, 17.2047, 9.87994)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.786472, -0.233574, 0.571756, 0, 0.925732, 0.37818, -0.617626, -0.297428, 0.728062, 16.7555, 19.4876, 31.3763)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.398182, 0.753744, -0.522801, -0.0665359, 0.592161, 0.803068, 0.91489, -0.284982, 0.285939, 0, 16.6962, 0)
 
@@ -32,3 +30,20 @@ transform = Transform3D(0.398182, 0.753744, -0.522801, -0.0665359, 0.592161, 0.8
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+
+[node name="Buildings" type="Node3D" parent="."]
+
+[node name="building" parent="Buildings" instance=ExtResource("2_yk2g2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5734, -1.90735e-06, 14.6592)
+
+[node name="building2" parent="Buildings" instance=ExtResource("2_yk2g2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.07773, 3.8147e-06, -7.37495)
+
+[node name="building3" parent="Buildings" instance=ExtResource("2_yk2g2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.79134, 0, 6.68909)
+
+[node name="building4" parent="Buildings" instance=ExtResource("2_yk2g2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.2284, 0, 16.8309)
+
+[node name="building5" parent="Buildings" instance=ExtResource("2_yk2g2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.49571, 0, -10.2928)
