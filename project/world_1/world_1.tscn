@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://0qaklcemfar0"]
+
+[ext_resource type="PackedScene" uid="uid://rl3xprstjp30" path="res://ship/ship.tscn" id="1_8bswx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x3bjd"]
+size = Vector2(50, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kmk48"]
+data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
+
+[node name="World1" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_x3bjd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_kmk48")
+
+[node name="ship" parent="." instance=ExtResource("1_8bswx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78146, 17.2047, 9.87994)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.786472, -0.233574, 0.571756, 0, 0.925732, 0.37818, -0.617626, -0.297428, 0.728062, 16.7555, 19.4876, 31.3763)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.398182, 0.753744, -0.522801, -0.0665359, 0.592161, 0.803068, 0.91489, -0.284982, 0.285939, 0, 16.6962, 0)
