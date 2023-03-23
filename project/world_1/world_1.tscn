@@ -20,7 +20,7 @@ mesh = SubResource("PlaneMesh_x3bjd")
 shape = SubResource("ConcavePolygonShape3D_kmk48")
 
 [node name="ship" parent="." instance=ExtResource("1_8bswx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78146, 17.2047, 9.87994)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78146, 17.2047, 36.079)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.398182, 0.753744, -0.522801, -0.0665359, 0.592161, 0.803068, 0.91489, -0.284982, 0.285939, 0, 16.6962, 0)
