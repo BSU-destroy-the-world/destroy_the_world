@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://rl3xprstjp30"]
+[gd_scene load_steps=8 format=3 uid="uid://rl3xprstjp30"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_bnpta"]
 [ext_resource type="Script" path="res://ship/camera_controller.gd" id="2_p13yg"]
+[ext_resource type="Script" path="res://ship/gui.gd" id="3_84qge"]
+[ext_resource type="Texture2D" uid="uid://dh8aohwqqhb1t" path="res://ship/dial_empty.svg" id="3_v2elt"]
+[ext_resource type="Texture2D" uid="uid://72evm821g8c4" path="res://ship/dial_full.svg" id="4_wyo0g"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_gap3r"]
 radius = 1.0
@@ -37,5 +40,48 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="DodgeCooldownTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="GUI" type="Control" parent="." node_paths=PackedStringArray("dodge_timer")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_84qge")
+dodge_timer = NodePath("../DodgeCooldownTimer")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 3480.0
+offset_right = 3800.0
+offset_bottom = 320.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "DODGE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DodgeCooldownBar" type="TextureProgressBar" parent="GUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 50.0
+fill_mode = 4
+texture_under = ExtResource("3_v2elt")
+texture_progress = ExtResource("4_wyo0g")
 
 [connection signal="timeout" from="DodgeCooldownTimer" to="." method="_on_dodge_cooldown_timer_timeout"]

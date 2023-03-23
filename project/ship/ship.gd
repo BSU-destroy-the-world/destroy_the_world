@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
-const SPEED = 15.0
-const DODGE_SPEED = 100.0
-const DODGE_SLOWDOWN = 0.5
+const SPEED = 25.0
+const DODGE_SPEED = 150.0
+const DODGE_SLOWDOWN = 10.0
 
 var can_dodge := true
 var dodging := false
@@ -27,7 +27,7 @@ func _physics_process(_delta):
 		dodge_cooldown_timer.start()
 
 	if dodging:
-		velocity = velocity.move_toward(Vector3.ZERO, SPEED * DODGE_SLOWDOWN)
+		velocity = velocity.move_toward(Vector3.ZERO, DODGE_SLOWDOWN)
 
 		move_and_slide()
 
