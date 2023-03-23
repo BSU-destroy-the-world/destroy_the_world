@@ -1,6 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bk8n1ede05bb0"]
+[gd_scene load_steps=10 format=3 uid="uid://bk8n1ede05bb0"]
 
 [ext_resource type="Script" path="res://building/building.gd" id="1_dootp"]
+[ext_resource type="Texture2D" uid="uid://cis0opdvai2iw" path="res://building/buildingtexture.jpg" id="2_jcov5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbh8u"]
+albedo_texture = ExtResource("2_jcov5")
 
 [sub_resource type="BoxMesh" id="BoxMesh_egh40"]
 size = Vector3(5, 22, 5)
@@ -93,12 +97,24 @@ script = ExtResource("1_dootp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
+material_override = SubResource("StandardMaterial3D_xbh8u")
 mesh = SubResource("BoxMesh_egh40")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
 shape = SubResource("ConvexPolygonShape3D_hfv4r")
+
+[node name="TextureRect" type="TextureRect" parent="StaticBody3D"]
+offset_right = 40.0
+offset_bottom = 40.0
+expand_mode = 2
+stretch_mode = 1
+
+[node name="Buildingtexture" type="Sprite2D" parent="StaticBody3D"]
+position = Vector2(21.125, 42.5)
+scale = Vector2(0.217249, 0.368182)
+texture = ExtResource("2_jcov5")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
 emitting = false
