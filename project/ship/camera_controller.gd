@@ -1,9 +1,10 @@
 extends Node3D
 
 @export var speed := 10.0
-@export var camera: Camera3D
-@export var target: Node3D
-@export var focus: Node3D
+
+@onready var camera := $Camera3D
+@onready var camera_target := $Target
+@onready var focus := $Focus
 
 
 func _process(delta):
@@ -12,10 +13,12 @@ func _process(delta):
 	rotate_y(-look_input.x * delta * 5)
 	focus.global_position.y += -look_input.y * delta * 5
 
-	var distance := camera.global_position.distance_to(target.global_position)
+	var distance: float = camera.global_position.distance_to(camera_target.global_position)
 
 	camera.global_position = camera.global_position.move_toward(
-		target.global_position, delta * speed * distance
+		camera_target.global_position, delta * speed * distance
 	)
 
-	camera.look_at(focus.global_position)
+	camera_target.look_at(focus.global_position)
+
+	camera.global_rotation = camera_target.global_rotation

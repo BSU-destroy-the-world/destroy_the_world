@@ -6,9 +6,30 @@ const DODGE_SLOWDOWN = 10.0
 
 var can_dodge := true
 var dodging := false
+var target: Node3D = null
+var target_collision_point := Vector3.ZERO
 
 @onready var camera_mount := $CameraMount
 @onready var dodge_cooldown_timer := $DodgeCooldownTimer
+@onready var reticle := $GUI/Reticle/Marker2D
+
+
+func _process(_delta):
+	# Raycast from reticle to find target and set it
+	var ray = camera_mount.camera.project_ray_normal(reticle.global_position)
+	var ray_from = camera_mount.camera.project_ray_origin(reticle.global_position)
+	var ray_to = ray_from + ray * 1000
+
+	var space_state = get_world_3d().direct_space_state
+	var parameters = PhysicsRayQueryParameters3D.create(ray_from, ray_to)
+	var result = space_state.intersect_ray(parameters)
+
+	if result:
+		if target != result.collider:
+			_set_target(result.collider, result.position)
+
+	else:
+		target = null
 
 
 func _physics_process(_delta):
@@ -66,6 +87,14 @@ func _get_camera_oriented_input() -> Vector3:
 	input = camera_mount.global_transform.basis * input
 	input.y = 0.0
 	return input
+
+
+func _set_target(new_target: Node3D, collision_point: Vector3):
+	target = new_target
+	target_collision_point = collision_point
+
+	if target.is_in_group("destroyable"):
+		target.destroy()
 
 
 func _on_dodge_cooldown_timer_timeout():

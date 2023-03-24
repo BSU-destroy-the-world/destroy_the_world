@@ -453,3 +453,27 @@ target = NodePath("../ship")
 [node name="Turret3" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0446, 0, 0)
 target = NodePath("../ship")
+
+[node name="Turret4" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2831, 0, 3.04742)
+target = NodePath("../ship")
+
+[node name="Turret5" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1598, 0, 3.04742)
+target = NodePath("../ship")
+
+[node name="Turret6" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0446, 0, 3.04742)
+target = NodePath("../ship")
+
+[node name="Turret7" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2831, 0, -2.43431)
+target = NodePath("../ship")
+
+[node name="Turret8" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1598, 0, -2.43431)
+target = NodePath("../ship")
+
+[node name="Turret9" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0446, 0, -2.43431)
+target = NodePath("../ship")
