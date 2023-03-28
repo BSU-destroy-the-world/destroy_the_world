@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://rl3xprstjp30"]
+[gd_scene load_steps=9 format=3 uid="uid://rl3xprstjp30"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_bnpta"]
 [ext_resource type="Script" path="res://ship/camera_controller.gd" id="2_p13yg"]
+[ext_resource type="Script" path="res://ship/gui.gd" id="3_84qge"]
+[ext_resource type="Texture2D" uid="uid://dh8aohwqqhb1t" path="res://ship/dial_empty.svg" id="3_v2elt"]
+[ext_resource type="Texture2D" uid="uid://72evm821g8c4" path="res://ship/dial_full.svg" id="4_wyo0g"]
+[ext_resource type="Texture2D" uid="uid://co751innfp08f" path="res://ship/reticle.svg" id="6_lapf1"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_gap3r"]
 radius = 1.0
@@ -18,11 +22,8 @@ mesh = SubResource("SphereMesh_gap3r")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_rd5kt")
 
-[node name="CameraMount" type="Node3D" parent="." node_paths=PackedStringArray("camera", "target", "focus")]
+[node name="CameraMount" type="Node3D" parent="."]
 script = ExtResource("2_p13yg")
-camera = NodePath("Camera3D")
-target = NodePath("Target")
-focus = NodePath("Focus")
 
 [node name="Camera3D" type="Camera3D" parent="CameraMount"]
 transform = Transform3D(1, 0, 0, 0, 0.970296, 0.241922, 0, -0.241922, 0.970296, 0, 1.9, 4.5)
@@ -37,5 +38,69 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="DodgeCooldownTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="GUI" type="Control" parent="." node_paths=PackedStringArray("dodge_timer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("3_84qge")
+dodge_timer = NodePath("../DodgeCooldownTimer")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -320.0
+offset_bottom = 382.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "DODGE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DodgeCooldownBar" type="TextureProgressBar" parent="GUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 50.0
+fill_mode = 4
+texture_under = ExtResource("3_v2elt")
+texture_progress = ExtResource("4_wyo0g")
+
+[node name="Reticle" type="TextureRect" parent="GUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -192.0
+offset_right = 64.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_lapf1")
+
+[node name="Marker2D" type="Marker2D" parent="GUI/Reticle"]
+position = Vector2(64, 64)
 
 [connection signal="timeout" from="DodgeCooldownTimer" to="." method="_on_dodge_cooldown_timer_timeout"]
