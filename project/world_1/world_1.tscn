@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://rl3xprstjp30" path="res://ship/ship.tscn" id="1_8bswx"]
 [ext_resource type="PackedScene" uid="uid://bk8n1ede05bb0" path="res://building/building.tscn" id="2_yk2g2"]
-[ext_resource type="PackedScene" uid="uid://mkgrx18bhr46" path="res://turret/turret.tscn" id="3_lovrw"]
+[ext_resource type="PackedScene" uid="uid://bnug38cqorhoj" path="res://projectile/projectile.tscn" id="3_2o4w4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4oqny"]
 
@@ -34,7 +34,7 @@ mesh = SubResource("PlaneMesh_x3bjd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_wfkk8")
 
-[node name="ship" parent="." instance=ExtResource("1_8bswx")]
+[node name="Ship" parent="." instance=ExtResource("1_8bswx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78146, 17.2047, 36.079)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -442,38 +442,5 @@ transform = Transform3D(0.398182, 0.753744, -0.522801, -0.0665359, 0.592161, 0.8
 
 [node name="building200" parent="Buildings" instance=ExtResource("2_yk2g2")]
 
-[node name="Turret" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2831, 0, 0)
-target = NodePath("../ship")
-
-[node name="Turret2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1598, 0, 0)
-target = NodePath("../ship")
-
-[node name="Turret3" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0446, 0, 0)
-target = NodePath("../ship")
-
-[node name="Turret4" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2831, 0, 3.04742)
-target = NodePath("../ship")
-
-[node name="Turret5" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1598, 0, 3.04742)
-target = NodePath("../ship")
-
-[node name="Turret6" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0446, 0, 3.04742)
-target = NodePath("../ship")
-
-[node name="Turret7" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2831, 0, -2.43431)
-target = NodePath("../ship")
-
-[node name="Turret8" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1598, 0, -2.43431)
-target = NodePath("../ship")
-
-[node name="Turret9" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0446, 0, -2.43431)
-target = NodePath("../ship")
+[node name="projectile" parent="." instance=ExtResource("3_2o4w4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36168, 9.94616, 21.5683)
