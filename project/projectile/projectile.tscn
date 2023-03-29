@@ -5,6 +5,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hk8yb"]
 
 [node name="projectile" type="Node3D"]
+top_level = true
 script = ExtResource("1_o8xy7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

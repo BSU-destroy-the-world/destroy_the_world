@@ -6,9 +6,9 @@ const SPEED := 15.0
 
 
 func _physics_process(delta):
-	var movement_vector := Vector3(0, 0, -SPEED * delta)
+	var movement_vector: Vector3 = -global_transform.basis.z * SPEED * delta
 
-	raycast.target_position = movement_vector
+	raycast.target_position = Vector3(0, 0, -1 * movement_vector.length())
 
 	if raycast.is_colliding():
 		movement_vector = raycast.get_collision_point() - global_position

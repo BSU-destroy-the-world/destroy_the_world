@@ -4,6 +4,7 @@ extends StaticBody3D
 
 @onready var barrel = $Barrel
 @onready var animation_player = $AnimationPlayer
+@onready var projectile_scene = preload("res://projectile/projectile.tscn")
 
 
 func _process(_delta):
@@ -11,7 +12,9 @@ func _process(_delta):
 
 
 func shoot():
-	print("shoot")
+	var projectile = projectile_scene.instantiate()
+	get_tree().get_root().add_child(projectile)
+	projectile.global_transform = barrel.global_transform
 
 
 func _on_shoot_timer_timeout():
