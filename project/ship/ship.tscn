@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_bnpta"]
 [ext_resource type="Script" path="res://ship/camera_controller.gd" id="2_p13yg"]
+[ext_resource type="PackedScene" uid="uid://bnug38cqorhoj" path="res://projectile/projectile.tscn" id="2_sdl2n"]
 [ext_resource type="Script" path="res://ship/gui.gd" id="3_84qge"]
 [ext_resource type="Texture2D" uid="uid://dh8aohwqqhb1t" path="res://ship/dial_empty.svg" id="3_v2elt"]
 [ext_resource type="Texture2D" uid="uid://72evm821g8c4" path="res://ship/dial_full.svg" id="4_wyo0g"]
@@ -22,6 +23,7 @@ size = Vector3(1.8, 0.9, 1.8)
 
 [node name="Ship" type="CharacterBody3D"]
 script = ExtResource("1_bnpta")
+bullet = ExtResource("2_sdl2n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_b7ytu")
@@ -110,5 +112,8 @@ texture = ExtResource("6_lapf1")
 
 [node name="Marker2D" type="Marker2D" parent="GUI/Reticle"]
 position = Vector2(64, 64)
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0275934, 0.718149, 0.0140857)
 
 [connection signal="timeout" from="DodgeCooldownTimer" to="." method="_on_dodge_cooldown_timer_timeout"]

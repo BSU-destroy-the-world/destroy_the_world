@@ -18,8 +18,6 @@ albedo_color = Color(0.372549, 0.372549, 0.372549, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_18s8t"]
 material = SubResource("StandardMaterial3D_homgf")
-radius = 0.25
-height = 0.5
 
 [sub_resource type="Animation" id="Animation_jgjt7"]
 length = 0.001
@@ -98,6 +96,7 @@ _data = {
 }
 
 [node name="Turret" type="StaticBody3D"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 script = ExtResource("1_a1ec7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
