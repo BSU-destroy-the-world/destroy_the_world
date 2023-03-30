@@ -126,15 +126,17 @@ mesh = SubResource("BoxMesh_egh40")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0)
 shape = SubResource("ConvexPolygonShape3D_hfv4r")
 
-[node name="TextureRect" type="TextureRect" parent="StaticBody3D"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="StaticBody3D@TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 41.0
+offset_bottom = 80.0
 expand_mode = 2
 stretch_mode = 1
 
-[node name="Buildingtexture" type="Sprite2D" parent="StaticBody3D"]
-position = Vector2(21.125, 42.5)
-scale = Vector2(0.217249, 0.368182)
+[node name="StaticBody3D@Buildingtexture" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(27.0625, 40.25)
+scale = Vector2(0.235262, 0.365909)
 texture = ExtResource("2_jcov5")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]

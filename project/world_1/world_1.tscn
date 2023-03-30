@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://0qaklcemfar0"]
+[gd_scene load_steps=13 format=3 uid="uid://0qaklcemfar0"]
 
 [ext_resource type="PackedScene" uid="uid://rl3xprstjp30" path="res://ship/ship.tscn" id="1_8bswx"]
 [ext_resource type="PackedScene" uid="uid://bk8n1ede05bb0" path="res://building/building.tscn" id="2_yk2g2"]
 [ext_resource type="PackedScene" uid="uid://mkgrx18bhr46" path="res://turret/turret.tscn" id="3_lovrw"]
+[ext_resource type="Texture2D" uid="uid://decu5f5uvs6qw" path="res://assets/TexturesCom_FaroerBayC_1K_hdri_sphere_tone.jpg" id="4_f06q8"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4oqny"]
 
@@ -23,6 +24,18 @@ size = Vector2(500, 500)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kmk48"]
 data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_wxd0l"]
+panorama = ExtResource("4_f06q8")
+
+[sub_resource type="Sky" id="Sky_jhl1h"]
+sky_material = SubResource("PanoramaSkyMaterial_wxd0l")
+
+[sub_resource type="Environment" id="Environment_weq82"]
+background_mode = 2
+background_energy_multiplier = 0.92
+sky = SubResource("Sky_jhl1h")
+sky_custom_fov = 107.2
 
 [node name="World1" type="Node3D"]
 
@@ -477,3 +490,6 @@ target = NodePath("../ship")
 [node name="Turret9" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0446, 0, -2.43431)
 target = NodePath("../ship")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_weq82")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://rl3xprstjp30"]
+[gd_scene load_steps=10 format=3 uid="uid://rl3xprstjp30"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_bnpta"]
 [ext_resource type="Script" path="res://ship/camera_controller.gd" id="2_p13yg"]
@@ -6,6 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://dh8aohwqqhb1t" path="res://ship/dial_empty.svg" id="3_v2elt"]
 [ext_resource type="Texture2D" uid="uid://72evm821g8c4" path="res://ship/dial_full.svg" id="4_wyo0g"]
 [ext_resource type="Texture2D" uid="uid://co751innfp08f" path="res://ship/reticle.svg" id="6_lapf1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b7ytu"]
+metallic = 0.64
+metallic_specular = 1.0
+metallic_texture_channel = 1
+clearcoat_enabled = true
+clearcoat_roughness = 1.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_gap3r"]
 radius = 1.0
@@ -17,6 +24,7 @@ size = Vector3(1.8, 0.9, 1.8)
 script = ExtResource("1_bnpta")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_b7ytu")
 mesh = SubResource("SphereMesh_gap3r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
