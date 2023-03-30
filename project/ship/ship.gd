@@ -9,9 +9,13 @@ var dodging := false
 var target: Node3D = null
 var target_collision_point := Vector3.ZERO
 
+@export var bullet : PackedScene
+
 @onready var camera_mount := $CameraMount
 @onready var dodge_cooldown_timer := $DodgeCooldownTimer
 @onready var reticle := $GUI/Reticle/Marker2D
+@onready var gun :=  $Marker3D
+@onready var bullet2 := preload("res://projectile/projectile.tscn")
 
 
 func _process(_delta):
@@ -30,6 +34,12 @@ func _process(_delta):
 
 	else:
 		target = null
+		
+	if Input.is_action_just_pressed("shoot"):
+		var b = bullet.instantiate()
+		get_tree().get_root().add_child(b)
+		b.global_position = gun.global_position
+		b.look_at(target_collision_point)
 
 
 func _physics_process(_delta):
@@ -93,9 +103,13 @@ func _set_target(new_target: Node3D, collision_point: Vector3):
 	target = new_target
 	target_collision_point = collision_point
 
-	if target.is_in_group("destroyable"):
-		target.destroy()
+#	if target.is_in_group("destroyable"):
+#		target.destroy()
 
 
 func _on_dodge_cooldown_timer_timeout():
 	can_dodge = true
+	
+		
+	
+	
