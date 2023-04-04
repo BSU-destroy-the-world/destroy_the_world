@@ -4,18 +4,18 @@ const SPEED = 25.0
 const DODGE_SPEED = 150.0
 const DODGE_SLOWDOWN = 10.0
 
+@export var bullet: PackedScene
+
 var can_dodge := true
 var dodging := false
 var target: Node3D = null
 var target_collision_point := Vector3.ZERO
 
-@export var bullet : PackedScene
-
 @onready var camera_mount := $CameraMount
 @onready var dodge_cooldown_timer := $DodgeCooldownTimer
 @onready var reticle := $GUI/Reticle/Marker2D
-@onready var gun :=  $Marker3D
-@onready var bullet2 := preload("res://projectile/projectile.tscn")
+@onready var indicator := $GUI/Indicator
+@onready var gun := $Marker3D
 
 
 func _process(_delta):
@@ -25,21 +25,22 @@ func _process(_delta):
 	var ray_to = ray_from + ray * 1000
 
 	var space_state = get_world_3d().direct_space_state
-	var parameters = PhysicsRayQueryParameters3D.create(ray_from, ray_to)
+	var parameters = PhysicsRayQueryParameters3D.create(ray_from, ray_to, 2)
 	var result = space_state.intersect_ray(parameters)
 
 	if result:
-		if target != result.collider:
-			_set_target(result.collider, result.position)
+		_set_target(result.collider, result.position)
 
-	else:
-		target = null
-		
+	# Set indicator position to collision point on screen
+	if target:
+		var screen_pos = camera_mount.camera.unproject_position(target_collision_point)
+		indicator.global_position = screen_pos - indicator.size / 2.0
+
 	if Input.is_action_just_pressed("shoot"):
 		var b = bullet.instantiate()
 		get_tree().get_root().add_child(b)
 		b.global_position = gun.global_position
-		b.look_at(target_collision_point)
+		b.look_at(ray_to)
 
 
 func _physics_process(_delta):
@@ -103,13 +104,8 @@ func _set_target(new_target: Node3D, collision_point: Vector3):
 	target = new_target
 	target_collision_point = collision_point
 
-#	if target.is_in_group("destroyable"):
-#		target.destroy()
+	indicator.visible = true
 
 
 func _on_dodge_cooldown_timer_timeout():
 	can_dodge = true
-	
-		
-	
-	

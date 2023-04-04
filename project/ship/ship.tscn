@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://rl3xprstjp30"]
+[gd_scene load_steps=11 format=3 uid="uid://rl3xprstjp30"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_bnpta"]
 [ext_resource type="Script" path="res://ship/camera_controller.gd" id="2_p13yg"]
@@ -112,6 +112,13 @@ texture = ExtResource("6_lapf1")
 
 [node name="Marker2D" type="Marker2D" parent="GUI/Reticle"]
 position = Vector2(64, 64)
+
+[node name="Indicator" type="TextureRect" parent="GUI"]
+visible = false
+layout_mode = 0
+offset_left = -256.0
+offset_top = -256.0
+texture = ExtResource("3_v2elt")
 
 [node name="Marker3D" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0275934, 0.718149, 0.0140857)

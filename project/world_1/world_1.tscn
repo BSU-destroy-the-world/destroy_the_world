@@ -1,13 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://0qaklcemfar0"]
+[gd_scene load_steps=26 format=3 uid="uid://bai0gbnvbdsct"]
 
 [ext_resource type="PackedScene" uid="uid://rl3xprstjp30" path="res://ship/ship.tscn" id="1_8bswx"]
-[ext_resource type="PackedScene" uid="uid://bk8n1ede05bb0" path="res://building/building.tscn" id="2_yk2g2"]
-<<<<<<< HEAD
-[ext_resource type="PackedScene" uid="uid://mkgrx18bhr46" path="res://turret/turret.tscn" id="3_lovrw"]
-[ext_resource type="Texture2D" uid="uid://decu5f5uvs6qw" path="res://assets/TexturesCom_FaroerBayC_1K_hdri_sphere_tone.jpg" id="4_f06q8"]
-=======
-[ext_resource type="PackedScene" uid="uid://bnug38cqorhoj" path="res://projectile/projectile.tscn" id="3_2o4w4"]
->>>>>>> 4eea4f405c3e75010b4ec84be021f8f2cdd8fb6c
+[ext_resource type="PackedScene" uid="uid://bww74xip2sdh6" path="res://assets/Kenny_City_Kit/large_buildingG.glb" id="3_h2t3m"]
+[ext_resource type="PackedScene" uid="uid://c7151peteinby" path="res://assets/Kenny_City_Kit/large_buildingE.glb" id="4_7don4"]
+[ext_resource type="PackedScene" uid="uid://rao1evj6y7fb" path="res://assets/Kenny_City_Kit/large_buildingA.glb" id="4_odpee"]
+[ext_resource type="PackedScene" uid="uid://c4ocgqy5831px" path="res://assets/Kenny_City_Kit/large_buildingF.glb" id="5_gds1w"]
+[ext_resource type="PackedScene" uid="uid://bw7wik7e58nqd" path="res://assets/Kenny_City_Kit/detail_overhangWide.glb" id="6_83qtf"]
+[ext_resource type="PackedScene" uid="uid://c5du1o6no2ib2" path="res://assets/Kenny_City_Kit/low_buildingA.glb" id="7_vkldh"]
+[ext_resource type="PackedScene" uid="uid://cuthuixjv25l0" path="res://assets/Kenny_City_Kit/low_buildingB.glb" id="8_b1kfo"]
+[ext_resource type="PackedScene" uid="uid://qcsayjk6unig" path="res://assets/Kenny_City_Kit/low_buildingC.glb" id="9_tt8xu"]
+[ext_resource type="PackedScene" uid="uid://dwhf82yg0jk5e" path="res://assets/Kenny_City_Kit/low_buildingD.glb" id="10_v261o"]
+[ext_resource type="PackedScene" uid="uid://cuee4emnijxcc" path="res://assets/Kenny_City_Kit/low_buildingE.glb" id="11_w45ff"]
+[ext_resource type="PackedScene" uid="uid://36uudbsshxfi" path="res://assets/Kenny_City_Kit/skyscraperC.glb" id="12_5yv36"]
+[ext_resource type="PackedScene" uid="uid://d4bn3np2kbluv" path="res://assets/Kenny_City_Kit/skyscraperA.glb" id="13_4kvo5"]
+[ext_resource type="PackedScene" uid="uid://beof5nttx7ffm" path="res://assets/Kenny_City_Kit/skyscraperB.glb" id="14_v4wos"]
+[ext_resource type="PackedScene" uid="uid://dpf0vm6ddie65" path="res://assets/Kenny_City_Kit/skyscraperE.glb" id="15_2p7c4"]
+[ext_resource type="PackedScene" uid="uid://4buh3urvbl7k" path="res://assets/Kenny_City_Kit/skyscraperF.glb" id="16_nnyoe"]
+[ext_resource type="PackedScene" uid="uid://dxbvdgmweakvo" path="res://assets/Kenny_City_Kit/small_buildingB.glb" id="17_rahss"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4oqny"]
 
@@ -24,22 +33,20 @@ albedo_texture = SubResource("NoiseTexture2D_88e5l")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_x3bjd"]
 material = SubResource("StandardMaterial3D_7xqlj")
-size = Vector2(500, 500)
+size = Vector2(5000, 5000)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wfkk8"]
 data = PackedVector3Array(250, 0, 250, -250, 0, 250, 250, 0, -250, -250, 0, 250, -250, 0, -250, 250, 0, -250)
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_wxd0l"]
-panorama = ExtResource("4_f06q8")
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_eu6f2"]
+energy_multiplier = 3.0
 
-[sub_resource type="Sky" id="Sky_jhl1h"]
-sky_material = SubResource("PanoramaSkyMaterial_wxd0l")
+[sub_resource type="Sky" id="Sky_igrmb"]
+sky_material = SubResource("PhysicalSkyMaterial_eu6f2")
 
-[sub_resource type="Environment" id="Environment_weq82"]
+[sub_resource type="Environment" id="Environment_et8jg"]
 background_mode = 2
-background_energy_multiplier = 0.92
-sky = SubResource("Sky_jhl1h")
-sky_custom_fov = 107.2
+sky = SubResource("Sky_igrmb")
 
 [node name="World1" type="Node3D"]
 
@@ -57,448 +64,56 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78146, 17.2047, 36.079)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.398182, 0.753744, -0.522801, -0.0665359, 0.592161, 0.803068, 0.91489, -0.284982, 0.285939, 0, 16.6962, 0)
 
-[node name="Buildings" type="Node3D" parent="."]
+[node name="large_buildingG" parent="." instance=ExtResource("3_h2t3m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5828, -3.8147e-06, -0.26857)
 
-[node name="building" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="large_buildingA" parent="." instance=ExtResource("4_odpee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.0556, 3.8147e-06, 28.2455)
 
-[node name="building2" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="large_buildingE" parent="." instance=ExtResource("4_7don4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.08237, 0, 29.2295)
 
-[node name="building3" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="large_buildingF" parent="." instance=ExtResource("5_gds1w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9484, 0, 44.2729)
 
-[node name="building4" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="large_buildingG2" parent="." instance=ExtResource("3_h2t3m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5434, 0, -21.8188)
 
-[node name="building5" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="detail_overhangWide" parent="." instance=ExtResource("6_83qtf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1659, 0, 47.9485)
 
-[node name="building6" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="low_buildingA" parent="." instance=ExtResource("7_vkldh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.6834, -9.53674e-07, 52.9307)
 
-[node name="building7" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="low_buildingB" parent="." instance=ExtResource("8_b1kfo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.6838, 0, 57.8346)
 
-[node name="building8" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="low_buildingC" parent="." instance=ExtResource("9_tt8xu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9686, 0, 66.4211)
 
-[node name="building9" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="low_buildingD" parent="." instance=ExtResource("10_v261o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.454, 0, 68.1993)
 
-[node name="building10" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="low_buildingE" parent="." instance=ExtResource("11_w45ff")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.7048, 0, 76.4184)
 
-[node name="building11" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="skyscraperC" parent="." instance=ExtResource("12_5yv36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.428, 0, 77.3492)
 
-[node name="building12" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="skyscraperA" parent="." instance=ExtResource("13_4kvo5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4054, 3.8147e-06, 88.8387)
 
-[node name="building13" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="skyscraperB" parent="." instance=ExtResource("14_v4wos")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02433, 3.8147e-06, 108.055)
 
-[node name="building14" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="skyscraperE" parent="." instance=ExtResource("15_2p7c4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8655, 3.8147e-06, 110.178)
 
-[node name="building15" parent="Buildings" instance=ExtResource("2_yk2g2")]
+[node name="skyscraperF" parent="." instance=ExtResource("16_nnyoe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.4362, 0, 90.0645)
 
-[node name="building16" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building17" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building18" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building19" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building20" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building21" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building22" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building23" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building24" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building25" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building26" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building27" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building28" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building29" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building30" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building31" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building32" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building33" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building34" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building35" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building36" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building37" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building38" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building39" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building40" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building41" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building42" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building43" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building44" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building45" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building46" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building47" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building48" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building49" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building50" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building51" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building52" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building53" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building54" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building55" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building56" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building57" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building58" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building59" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building60" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building61" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building62" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building63" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building64" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building65" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building66" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building67" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building68" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building69" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building70" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building71" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building72" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building73" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building74" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building75" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building76" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building77" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building78" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building79" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building80" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building81" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building82" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building83" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building84" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building85" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building86" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building87" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building88" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building89" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building90" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building91" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building92" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building93" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building94" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building95" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building96" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building97" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building98" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building99" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building100" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building101" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building102" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building103" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building104" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building105" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building106" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building107" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building108" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building109" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building110" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building111" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building112" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building113" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building114" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building115" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building116" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building117" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building118" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building119" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building120" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building121" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building122" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building123" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building124" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building125" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building126" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building127" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building128" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building129" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building130" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building131" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building132" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building133" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building134" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building135" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building136" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building137" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building138" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building139" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building140" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building141" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building142" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building143" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building144" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building145" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building146" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building147" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building148" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building149" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building150" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building151" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building152" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building153" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building154" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building155" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building156" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building157" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building158" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building159" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building160" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building161" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building162" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building163" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building164" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building165" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building166" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building167" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building168" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building169" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building170" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building171" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building172" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building173" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building174" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building175" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building176" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building177" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building178" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building179" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building180" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building181" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building182" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building183" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building184" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building185" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building186" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building187" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building188" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building189" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building190" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building191" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building192" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building193" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building194" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building195" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building196" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building197" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building198" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building199" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-[node name="building200" parent="Buildings" instance=ExtResource("2_yk2g2")]
-
-<<<<<<< HEAD
-[node name="Turret" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2831, 0, 0)
-target = NodePath("../ship")
-
-[node name="Turret2" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1598, 0, 0)
-target = NodePath("../ship")
-
-[node name="Turret3" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0446, 0, 0)
-target = NodePath("../ship")
-
-[node name="Turret4" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2831, 0, 3.04742)
-target = NodePath("../ship")
-
-[node name="Turret5" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1598, 0, 3.04742)
-target = NodePath("../ship")
-
-[node name="Turret6" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0446, 0, 3.04742)
-target = NodePath("../ship")
-
-[node name="Turret7" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2831, 0, -2.43431)
-target = NodePath("../ship")
-
-[node name="Turret8" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.1598, 0, -2.43431)
-target = NodePath("../ship")
-
-[node name="Turret9" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_lovrw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0446, 0, -2.43431)
-target = NodePath("../ship")
+[node name="small_buildingB" parent="." instance=ExtResource("17_rahss")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0369, 0, 121.81)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_weq82")
-=======
-[node name="projectile" parent="." instance=ExtResource("3_2o4w4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36168, 9.94616, 21.5683)
->>>>>>> 4eea4f405c3e75010b4ec84be021f8f2cdd8fb6c
+environment = SubResource("Environment_et8jg")

@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bk8n1ede05bb0"]
+[gd_scene load_steps=9 format=3 uid="uid://bk8n1ede05bb0"]
 
 [ext_resource type="Script" path="res://building/building.gd" id="1_dootp"]
-[ext_resource type="Texture2D" uid="uid://cis0opdvai2iw" path="res://building/buildingtexture.jpg" id="2_jcov5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xbh8u"]
-albedo_texture = ExtResource("2_jcov5")
 
 [sub_resource type="BoxMesh" id="BoxMesh_egh40"]
 size = Vector3(5, 22, 5)
@@ -153,6 +151,7 @@ _data = {
 }
 
 [node name="Building" type="StaticBody3D" groups=["destroyable"]]
+collision_layer = 3
 script = ExtResource("1_dootp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -179,7 +178,6 @@ stretch_mode = 1
 visible = false
 position = Vector2(27.0625, 40.25)
 scale = Vector2(0.235262, 0.365909)
-texture = ExtResource("2_jcov5")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
 emitting = false
