@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bai0gbnvbdsct"]
+[gd_scene load_steps=37 format=3 uid="uid://bai0gbnvbdsct"]
 
 [ext_resource type="PackedScene" uid="uid://rl3xprstjp30" path="res://ship/ship.tscn" id="1_8bswx"]
 [ext_resource type="PackedScene" uid="uid://bww74xip2sdh6" path="res://assets/Kenny_City_Kit/large_buildingG.glb" id="3_h2t3m"]
@@ -17,6 +17,17 @@
 [ext_resource type="PackedScene" uid="uid://dpf0vm6ddie65" path="res://assets/Kenny_City_Kit/skyscraperE.glb" id="15_2p7c4"]
 [ext_resource type="PackedScene" uid="uid://4buh3urvbl7k" path="res://assets/Kenny_City_Kit/skyscraperF.glb" id="16_nnyoe"]
 [ext_resource type="PackedScene" uid="uid://dxbvdgmweakvo" path="res://assets/Kenny_City_Kit/small_buildingB.glb" id="17_rahss"]
+[ext_resource type="Texture2D" uid="uid://bxh5i82l4cwvf" path="res://assets/textures/086_hdrmaps_com_free.exr" id="18_e23w5"]
+[ext_resource type="PackedScene" uid="uid://c6rny72tyy425" path="res://assets/Kenny_Street_Kit/road_intersection.glb" id="19_3uw1v"]
+[ext_resource type="PackedScene" uid="uid://c41c77pojpg7d" path="res://assets/Kenny_Street_Kit/road_crossing.glb" id="20_s8c5c"]
+[ext_resource type="PackedScene" uid="uid://cgggj8hudm3v5" path="res://assets/Kenny_Street_Kit/road_crossroad.glb" id="21_205xi"]
+[ext_resource type="PackedScene" uid="uid://dira7uew0whi6" path="res://assets/Kenny_City_Kit/small_buildingD.glb" id="22_ccqpi"]
+[ext_resource type="PackedScene" uid="uid://c6a5ms2k5igvu" path="res://assets/Kenny_Street_Kit/light_curved.glb" id="23_mjobe"]
+[ext_resource type="PackedScene" uid="uid://b7224fc72uhvh" path="res://assets/Kenny_Street_Kit/road_straight.glb" id="24_x7aej"]
+[ext_resource type="PackedScene" uid="uid://ci4t686xqmh3j" path="res://assets/Kenny_City_Kit/small_buildingF.glb" id="25_8w5oy"]
+[ext_resource type="PackedScene" uid="uid://dljldejnef8ad" path="res://assets/Kenny_City_Kit/small_buildingA.glb" id="26_x7fog"]
+[ext_resource type="PackedScene" uid="uid://dmhfjk7afqrl8" path="res://assets/Kenny_City_Kit/detail_umbrella.glb" id="27_7510j"]
+[ext_resource type="PackedScene" uid="uid://bl3cxy0pribl3" path="res://assets/Kenny_City_Kit/sign_hospital.glb" id="28_7hs5a"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4oqny"]
 
@@ -38,15 +49,16 @@ size = Vector2(5000, 5000)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wfkk8"]
 data = PackedVector3Array(250, 0, 250, -250, 0, 250, 250, 0, -250, -250, 0, 250, -250, 0, -250, 250, 0, -250)
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_eu6f2"]
-energy_multiplier = 3.0
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_g48eh"]
+panorama = ExtResource("18_e23w5")
 
-[sub_resource type="Sky" id="Sky_igrmb"]
-sky_material = SubResource("PhysicalSkyMaterial_eu6f2")
+[sub_resource type="Sky" id="Sky_liwid"]
+sky_material = SubResource("PanoramaSkyMaterial_g48eh")
 
 [sub_resource type="Environment" id="Environment_et8jg"]
 background_mode = 2
-sky = SubResource("Sky_igrmb")
+sky = SubResource("Sky_liwid")
+sky_custom_fov = 73.1
 
 [node name="World1" type="Node3D"]
 
@@ -71,13 +83,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5828, -3.8147e-06, -0.2685
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.0556, 3.8147e-06, 28.2455)
 
 [node name="large_buildingE" parent="." instance=ExtResource("4_7don4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.08237, 0, 29.2295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.6837, 0, -15.5355)
+
+[node name="large_buildingE2" parent="." instance=ExtResource("4_7don4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.6837, 0, -15.5355)
 
 [node name="large_buildingF" parent="." instance=ExtResource("5_gds1w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9484, 0, 44.2729)
 
 [node name="large_buildingG2" parent="." instance=ExtResource("3_h2t3m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5434, 0, -21.8188)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5434, 0, -17.5853)
 
 [node name="detail_overhangWide" parent="." instance=ExtResource("6_83qtf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1659, 0, 47.9485)
@@ -101,19 +116,77 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.7048, 0, 76.4184)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.428, 0, 77.3492)
 
 [node name="skyscraperA" parent="." instance=ExtResource("13_4kvo5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4054, 3.8147e-06, 88.8387)
+transform = Transform3D(-1, 0, -8.9407e-08, 0, 1, 0, 8.9407e-08, 0, -1, -38.7099, 3.8147e-06, 16.5349)
 
 [node name="skyscraperB" parent="." instance=ExtResource("14_v4wos")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02433, 3.8147e-06, 108.055)
 
 [node name="skyscraperE" parent="." instance=ExtResource("15_2p7c4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.8655, 3.8147e-06, 110.178)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.7059, 3.8147e-06, 44.6102)
 
 [node name="skyscraperF" parent="." instance=ExtResource("16_nnyoe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.4362, 0, 90.0645)
 
 [node name="small_buildingB" parent="." instance=ExtResource("17_rahss")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0369, 0, 121.81)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -28.759, 0, 15.4651)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_et8jg")
+
+[node name="road_intersection" parent="." instance=ExtResource("19_3uw1v")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14.735, -9.53674e-07, 15.4212)
+
+[node name="road_intersection3" parent="." instance=ExtResource("19_3uw1v")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -14.735, -9.53674e-07, 45.4008)
+
+[node name="road_intersection4" parent="." instance=ExtResource("19_3uw1v")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -54.7276, -9.53674e-07, 45.4008)
+
+[node name="road_intersection2" parent="." instance=ExtResource("19_3uw1v")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -54.727, -9.53674e-07, 15.4212)
+
+[node name="road_crossing" parent="." instance=ExtResource("20_s8c5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7293, 0, -14.584)
+
+[node name="road_crossing2" parent="." instance=ExtResource("20_s8c5c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7293, 0, 45.4024)
+
+[node name="road_crossroad" parent="." instance=ExtResource("21_205xi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.724, 0, -14.5698)
+visible = false
+
+[node name="small_buildingD" parent="." instance=ExtResource("22_ccqpi")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -28.5134, 0, 24.3254)
+
+[node name="light_curved" parent="." instance=ExtResource("23_mjobe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.19505, -1.90735e-06, -23.5297)
+
+[node name="road_straight" parent="." instance=ExtResource("24_x7aej")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.260175, 0, 20.4212)
+
+[node name="road_straight2" parent="." instance=ExtResource("24_x7aej")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.260175, 0, 40.4036)
+
+[node name="road_straight3" parent="." instance=ExtResource("24_x7aej")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -39.7237, 0, 20.4212)
+
+[node name="road_straight4" parent="." instance=ExtResource("24_x7aej")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -39.7237, 0, 40.4036)
+
+[node name="small_buildingF" parent="." instance=ExtResource("25_8w5oy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6178, 0, 46.5263)
+
+[node name="small_buildingA" parent="." instance=ExtResource("26_x7fog")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -28.5184, 0, 32.3003)
+
+[node name="detail_umbrella" parent="." instance=ExtResource("27_7510j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.0548, 1.90735e-06, 26.9442)
+
+[node name="detail_umbrella2" parent="." instance=ExtResource("27_7510j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.2219, 0, 31.0041)
+
+[node name="detail_umbrella3" parent="." instance=ExtResource("27_7510j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.2351, 0, 34.3131)
+
+[node name="sign_hospital" parent="." instance=ExtResource("28_7hs5a")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -38.6921, 19.0388, -9.09488)
