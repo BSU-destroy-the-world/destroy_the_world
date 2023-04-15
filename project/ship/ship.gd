@@ -104,7 +104,7 @@ func _set_target(new_target: Node3D, collision_point: Vector3):
 	target = new_target
 	target_collision_point = collision_point
 
-	indicator.visible = true
+	# indicator.visible = true
 
 
 func _on_dodge_cooldown_timer_timeout():

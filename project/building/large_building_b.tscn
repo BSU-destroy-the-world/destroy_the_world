@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0ql33wr643rr"]
+
+[ext_resource type="PackedScene" uid="uid://bk8n1ede05bb0" path="res://building/building.tscn" id="1_ona4x"]
+[ext_resource type="PackedScene" uid="uid://c5jleae1tpxno" path="res://assets/Kenny_City_Kit/large_buildingB.glb" id="2_785yj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_71msc"]
+size = Vector3(8, 17, 8)
+
+[node name="LargeBuildingB" type="Node3D"]
+
+[node name="Building" parent="." instance=ExtResource("1_ona4x")]
+
+[node name="Mesh" parent="Building" instance=ExtResource("2_785yj")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.5, 0)
+shape = SubResource("BoxShape3D_71msc")

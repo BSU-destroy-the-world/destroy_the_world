@@ -1,16 +1,8 @@
-[gd_scene load_steps=37 format=3 uid="uid://bai0gbnvbdsct"]
+[gd_scene load_steps=29 format=3 uid="uid://bai0gbnvbdsct"]
 
 [ext_resource type="PackedScene" uid="uid://rl3xprstjp30" path="res://ship/ship.tscn" id="1_8bswx"]
 [ext_resource type="PackedScene" uid="uid://bww74xip2sdh6" path="res://assets/Kenny_City_Kit/large_buildingG.glb" id="3_h2t3m"]
 [ext_resource type="PackedScene" uid="uid://c7151peteinby" path="res://assets/Kenny_City_Kit/large_buildingE.glb" id="4_7don4"]
-[ext_resource type="PackedScene" uid="uid://rao1evj6y7fb" path="res://assets/Kenny_City_Kit/large_buildingA.glb" id="4_odpee"]
-[ext_resource type="PackedScene" uid="uid://c4ocgqy5831px" path="res://assets/Kenny_City_Kit/large_buildingF.glb" id="5_gds1w"]
-[ext_resource type="PackedScene" uid="uid://bw7wik7e58nqd" path="res://assets/Kenny_City_Kit/detail_overhangWide.glb" id="6_83qtf"]
-[ext_resource type="PackedScene" uid="uid://c5du1o6no2ib2" path="res://assets/Kenny_City_Kit/low_buildingA.glb" id="7_vkldh"]
-[ext_resource type="PackedScene" uid="uid://cuthuixjv25l0" path="res://assets/Kenny_City_Kit/low_buildingB.glb" id="8_b1kfo"]
-[ext_resource type="PackedScene" uid="uid://qcsayjk6unig" path="res://assets/Kenny_City_Kit/low_buildingC.glb" id="9_tt8xu"]
-[ext_resource type="PackedScene" uid="uid://dwhf82yg0jk5e" path="res://assets/Kenny_City_Kit/low_buildingD.glb" id="10_v261o"]
-[ext_resource type="PackedScene" uid="uid://cuee4emnijxcc" path="res://assets/Kenny_City_Kit/low_buildingE.glb" id="11_w45ff"]
 [ext_resource type="PackedScene" uid="uid://36uudbsshxfi" path="res://assets/Kenny_City_Kit/skyscraperC.glb" id="12_5yv36"]
 [ext_resource type="PackedScene" uid="uid://d4bn3np2kbluv" path="res://assets/Kenny_City_Kit/skyscraperA.glb" id="13_4kvo5"]
 [ext_resource type="PackedScene" uid="uid://beof5nttx7ffm" path="res://assets/Kenny_City_Kit/skyscraperB.glb" id="14_v4wos"]
@@ -76,41 +68,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78146, 17.2047, 36.079)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.398182, 0.753744, -0.522801, -0.0665359, 0.592161, 0.803068, 0.91489, -0.284982, 0.285939, 0, 16.6962, 0)
 
-[node name="large_buildingG" parent="." instance=ExtResource("3_h2t3m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5828, -3.8147e-06, -0.26857)
-
-[node name="large_buildingA" parent="." instance=ExtResource("4_odpee")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.0556, 3.8147e-06, 28.2455)
-
 [node name="large_buildingE" parent="." instance=ExtResource("4_7don4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.6837, 0, -15.5355)
 
 [node name="large_buildingE2" parent="." instance=ExtResource("4_7don4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.6837, 0, -15.5355)
 
-[node name="large_buildingF" parent="." instance=ExtResource("5_gds1w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9484, 0, 44.2729)
-
 [node name="large_buildingG2" parent="." instance=ExtResource("3_h2t3m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5434, 0, -17.5853)
-
-[node name="detail_overhangWide" parent="." instance=ExtResource("6_83qtf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1659, 0, 47.9485)
-
-[node name="low_buildingA" parent="." instance=ExtResource("7_vkldh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.6834, -9.53674e-07, 52.9307)
-
-[node name="low_buildingB" parent="." instance=ExtResource("8_b1kfo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.6838, 0, 57.8346)
-
-[node name="low_buildingC" parent="." instance=ExtResource("9_tt8xu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9686, 0, 66.4211)
-
-[node name="low_buildingD" parent="." instance=ExtResource("10_v261o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.454, 0, 68.1993)
-
-[node name="low_buildingE" parent="." instance=ExtResource("11_w45ff")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.7048, 0, 76.4184)
 
 [node name="skyscraperC" parent="." instance=ExtResource("12_5yv36")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.428, 0, 77.3492)
