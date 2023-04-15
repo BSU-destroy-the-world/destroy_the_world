@@ -121,6 +121,6 @@ offset_top = -256.0
 texture = ExtResource("3_v2elt")
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0275934, 0.718149, 0.0140857)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0275934, -0.737989, 0.0140857)
 
 [connection signal="timeout" from="DodgeCooldownTimer" to="." method="_on_dodge_cooldown_timer_timeout"]

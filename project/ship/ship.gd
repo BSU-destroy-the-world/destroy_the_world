@@ -30,6 +30,8 @@ func _process(_delta):
 
 	if result:
 		_set_target(result.collider, result.position)
+	else:
+		_set_target(null, Vector3.ZERO)
 
 	# Set indicator position to collision point on screen
 	if target:
@@ -40,7 +42,11 @@ func _process(_delta):
 		var b = bullet.instantiate()
 		get_tree().get_root().add_child(b)
 		b.global_position = gun.global_position
-		b.look_at(ray_to)
+
+		if target:
+			b.look_at(target_collision_point)
+		else:
+			b.look_at(ray_to)
 
 
 func _physics_process(_delta):
