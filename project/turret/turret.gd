@@ -14,7 +14,6 @@ func _process(_delta):
 	base.look_at(target.global_transform.origin, Vector3.UP)
 	base.rotation.x = 0
 	base.rotation.z = 0
-	
 	barrel.look_at(target.global_transform.origin, Vector3.UP)
 
 

@@ -3,6 +3,7 @@ extends Node3D
 const SPEED := 40.0
 
 @onready var raycast := $RayCast3D
+@onready var explosion := preload("res://Explosion Scene.tscn")
 
 
 func _physics_process(delta):
@@ -12,10 +13,13 @@ func _physics_process(delta):
 
 	if raycast.is_colliding():
 		movement_vector = raycast.get_collision_point() - global_position
+		var exploaded = explosion.instantiate()
+		get_parent().add_child(exploaded)
+		exploaded.global_position = raycast.get_collision_point()
 
 		if raycast.get_collider().is_in_group("destroyable"):
 			raycast.get_collider().destroy()
 
-			queue_free()
+		queue_free()
 
 	global_position += movement_vector
