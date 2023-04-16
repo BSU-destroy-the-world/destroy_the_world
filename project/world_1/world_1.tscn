@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bai0gbnvbdsct"]
+[gd_scene load_steps=38 format=3 uid="uid://bai0gbnvbdsct"]
 
 [ext_resource type="PackedScene" uid="uid://rl3xprstjp30" path="res://ship/ship.tscn" id="1_8bswx"]
 [ext_resource type="Texture2D" uid="uid://bxh5i82l4cwvf" path="res://assets/textures/086_hdrmaps_com_free.exr" id="18_e23w5"]
@@ -152,5 +152,3 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -69, 0
 [node name="LargeBuildingG" parent="Buildings" instance=ExtResource("35_m32bg")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -115, 0, 35)
 
-[node name="SkyscraperA" parent="Buildings" instance=ExtResource("28_g2kfj")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -116, 0, 17)
