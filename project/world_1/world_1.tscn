@@ -149,8 +149,8 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -80, 0
 [node name="LargeBuildingF" parent="Buildings" instance=ExtResource("34_f3cnd")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -69, 0, 21)
 
-[node name="LargeBuildingG" parent="." instance=ExtResource("35_m32bg")]
+[node name="LargeBuildingG" parent="Buildings" instance=ExtResource("35_m32bg")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -115, 0, 35)
 
-[node name="SkyscraperA" parent="." instance=ExtResource("28_g2kfj")]
+[node name="SkyscraperA" parent="Buildings" instance=ExtResource("28_g2kfj")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -116, 0, 17)
