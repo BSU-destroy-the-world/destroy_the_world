@@ -6,6 +6,11 @@ const SPEED := 40.0
 @onready var explosion := preload("res://Explosion Scene.tscn")
 
 
+func _process(_delta):
+	if Input.is_action_just_pressed("debug_restart"):
+		queue_free()
+
+
 func _physics_process(delta):
 	var movement_vector: Vector3 = -global_transform.basis.z * SPEED * delta
 

@@ -7,8 +7,10 @@ extends StaticBody3D
 @onready var projectile_scene = preload("res://projectile/projectile.tscn")
 @onready var base = $Node3D
 
+
 func _ready():
 	target = get_node("/root/World1/Ship")
+
 
 func _process(_delta):
 	base.look_at(target.global_transform.origin, Vector3.UP)
