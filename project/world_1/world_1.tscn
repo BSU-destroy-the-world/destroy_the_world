@@ -152,5 +152,37 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -69, 0
 [node name="LargeBuildingG" parent="Buildings" instance=ExtResource("35_m32bg")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -115, 0, 35)
 
+[node name="LargeBuildingE2" parent="Buildings" instance=ExtResource("33_efq8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -17)
+
+[node name="SkyscraperB2" parent="Buildings" instance=ExtResource("29_egqiy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 44)
+
+[node name="LargeBuildingC2" parent="Buildings" instance=ExtResource("31_7k62a")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 15)
+
+[node name="LargeBuildingF2" parent="Buildings" instance=ExtResource("34_f3cnd")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11, 0, 21)
+
+[node name="LargeBuildingG2" parent="Buildings" instance=ExtResource("35_m32bg")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -35, 0, 35)
+
+[node name="LargeBuildingE3" parent="Buildings" instance=ExtResource("33_efq8i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -175, 0, -17)
+
+[node name="SkyscraperB3" parent="Buildings" instance=ExtResource("29_egqiy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -152, 0, 44)
+
+[node name="LargeBuildingC3" parent="Buildings" instance=ExtResource("31_7k62a")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -161, 0, 15)
+
+[node name="LargeBuildingF3" parent="Buildings" instance=ExtResource("34_f3cnd")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -150, 0, 21)
+
+[node name="LargeBuildingG3" parent="Buildings" instance=ExtResource("35_m32bg")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -196, 0, 35)
+
 [node name="Turret" parent="." instance=ExtResource("11_0r2u8")]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -53.2839, 0.495338, 35.2029)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -67, 13, 20)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
