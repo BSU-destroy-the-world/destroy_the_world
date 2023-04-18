@@ -4,7 +4,7 @@ const SPEED = 25.0
 const DODGE_SPEED = 150.0
 const DODGE_SLOWDOWN = 10.0
 
-@export var bullet: PackedScene
+@export var projectile_scene: PackedScene
 
 var can_dodge := true
 var dodging := false
@@ -39,14 +39,15 @@ func _process(_delta):
 		indicator.global_position = screen_pos - indicator.size / 2.0
 
 	if Input.is_action_just_pressed("shoot"):
-		var b = bullet.instantiate()
-		get_tree().get_root().add_child(b)
-		b.global_position = gun.global_position
+		var projectile = projectile_scene.instantiate()
+		get_tree().get_root().add_child(projectile)
+		projectile.global_transform = gun.global_transform
+		projectile.set_is_players()
 
 		if target:
-			b.look_at(target_collision_point)
+			projectile.look_at(target_collision_point)
 		else:
-			b.look_at(ray_to)
+			projectile.look_at(ray_to)
 
 
 func _physics_process(_delta):
