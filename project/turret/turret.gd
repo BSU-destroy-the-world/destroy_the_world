@@ -21,8 +21,8 @@ func _process(_delta):
 
 func destroy():
 	var explosion = explosion_scene.instantiate()
-	get_parent().add_child(explosion)
-	explosion.global_position = global_position
+	get_parent().add_child.call_deferred(explosion)
+	explosion.set_global_transform.call_deferred(global_transform)
 
 	queue_free()
 

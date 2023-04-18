@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnug38cqorhoj"]
+[gd_scene load_steps=9 format=3 uid="uid://bnug38cqorhoj"]
 
 [ext_resource type="Script" path="res://projectile/projectile.gd" id="1_o8xy7"]
 [ext_resource type="ArrayMesh" uid="uid://b3tyyoghhf4m2" path="res://assets/Kenny_Weapons/ammo_rocketModern.obj" id="2_t6vlx"]
@@ -18,6 +18,9 @@ vertex_color_use_as_albedo = true
 material = SubResource("StandardMaterial3D_0dgkc")
 
 [sub_resource type="Gradient" id="Gradient_hx27u"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nu17v"]
+radius = 7.5
 
 [node name="projectile" type="Node3D"]
 top_level = true
@@ -73,3 +76,8 @@ color_ramp = SubResource("Gradient_hx27u")
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 target_position = Vector3(0, 0, -1)
+
+[node name="ImpactSphere" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ImpactSphere"]
+shape = SubResource("SphereShape3D_nu17v")

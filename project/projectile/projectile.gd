@@ -3,7 +3,8 @@ extends Node3D
 const SPEED := 40.0
 
 @onready var raycast := $RayCast3D
-@onready var explosion := preload("res://Explosion Scene.tscn")
+@onready var impact_sphere: Area3D = $ImpactSphere
+@onready var explosion_scene := preload("res://Explosion Scene.tscn")
 
 
 func _process(_delta):
@@ -17,14 +18,21 @@ func _physics_process(delta):
 	raycast.target_position = Vector3(0, 0, -1 * movement_vector.length())
 
 	if raycast.is_colliding():
-		movement_vector = raycast.get_collision_point() - global_position
-		var exploaded = explosion.instantiate()
-		get_parent().add_child(exploaded)
-		exploaded.global_position = raycast.get_collision_point()
-
-		if raycast.get_collider().is_in_group("destroyable"):
-			raycast.get_collider().destroy()
-
-		queue_free()
+		explode(raycast.get_collision_point())
+		return
 
 	global_position += movement_vector
+
+
+func explode(impact_position: Vector3):
+	impact_sphere.global_position = impact_position
+
+	for object in impact_sphere.get_overlapping_bodies():
+		if object.is_in_group("destroyable"):
+			object.destroy()
+
+	var explosion = explosion_scene.instantiate()
+	get_parent().add_child(explosion)
+	explosion.global_position = impact_position
+
+	queue_free()
