@@ -2,6 +2,8 @@ extends Node3D
 
 const SPEED := 40.0
 
+var _is_players := false
+
 @onready var raycast := $RayCast3D
 @onready var impact_sphere: Area3D = $ImpactSphere
 @onready var explosion_scene := preload("res://Spatial.tscn")
@@ -17,11 +19,18 @@ func _physics_process(delta):
 
 	raycast.target_position = Vector3(0, 0, -1 * movement_vector.length())
 
-	if raycast.is_colliding():
+	if (
+		raycast.is_colliding()
+		and (not _is_players or not raycast.get_collider().is_in_group("ship"))
+	):
 		explode(raycast.get_collision_point())
 		return
 
 	global_position += movement_vector
+
+
+func set_is_players():
+	_is_players = true
 
 
 func explode(impact_position: Vector3):

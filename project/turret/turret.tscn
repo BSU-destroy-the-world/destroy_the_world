@@ -331,6 +331,9 @@ material = SubResource("StandardMaterial3D_5dohc")
 height = 250.0
 radius = 50.0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_un1q7"]
+height = 0.1
+
 [sub_resource type="Animation" id="Animation_jgjt7"]
 length = 0.001
 tracks/0/type = "value"
@@ -406,9 +409,6 @@ _data = {
 "RESET": SubResource("Animation_jgjt7"),
 "shoot": SubResource("Animation_fvk2e")
 }
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_un1q7"]
-height = 0.5
 
 [node name="Turret" type="StaticBody3D" groups=["destroyable"]]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
@@ -543,6 +543,12 @@ target_position = Vector3(0, 0, -100)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TargetingArea"]
 shape = SubResource("CylinderShape3D_rcl36")
 
+[node name="GroundDetector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)
+shape = SubResource("CylinderShape3D_un1q7")
+
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
@@ -552,13 +558,7 @@ libraries = {
 "": SubResource("AnimationLibrary_afbgf")
 }
 
-[node name="GroundDetector" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundDetector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
-shape = SubResource("CylinderShape3D_un1q7")
-
 [connection signal="body_entered" from="TargetingArea" to="." method="_on_targeting_area_body_entered"]
 [connection signal="body_exited" from="TargetingArea" to="." method="_on_targeting_area_body_exited"]
-[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="body_exited" from="GroundDetector" to="." method="_on_ground_detector_body_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -12,9 +12,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_rd5kt"]
 size = Vector3(1.8, 0.9, 1.8)
 
-[node name="Ship" type="CharacterBody3D"]
+[node name="Ship" type="CharacterBody3D" groups=["ship"]]
 script = ExtResource("1_bnpta")
-bullet = ExtResource("2_sdl2n")
+projectile_scene = ExtResource("2_sdl2n")
 
 [node name="scene" parent="." instance=ExtResource("3_6gwqd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000704169, 0.45, 0.02021)

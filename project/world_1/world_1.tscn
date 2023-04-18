@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://bai0gbnvbdsct"]
+[gd_scene load_steps=25 format=3 uid="uid://bai0gbnvbdsct"]
 
 [ext_resource type="PackedScene" uid="uid://rl3xprstjp30" path="res://ship/ship.tscn" id="1_8bswx"]
 [ext_resource type="Script" path="res://world_1/world_1.gd" id="1_drgjj"]
 [ext_resource type="PackedScene" uid="uid://mkgrx18bhr46" path="res://turret/turret.tscn" id="11_0r2u8"]
+[ext_resource type="PackedScene" uid="uid://7ab4s2pmdoxd" path="res://building/mega_skyscraper.tscn" id="13_mrmrv"]
 [ext_resource type="PackedScene" uid="uid://dq1tw436lah6i" path="res://assets/Kenny_City_Kit/detail_umbrellaDetailed.glb" id="13_vik8u"]
 [ext_resource type="PackedScene" uid="uid://bw7wik7e58nqd" path="res://assets/Kenny_City_Kit/detail_overhangWide.glb" id="14_vef36"]
 [ext_resource type="PackedScene" uid="uid://bl3cxy0pribl3" path="res://assets/Kenny_City_Kit/sign_hospital.glb" id="15_m3xii"]
@@ -188,14 +189,25 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -150, 
 [node name="LargeBuildingG3" parent="Buildings" instance=ExtResource("35_m32bg")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -196, 0, 35)
 
-[node name="Turret" parent="." instance=ExtResource("11_0r2u8")]
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Turret" parent="Node3D" instance=ExtResource("11_0r2u8")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -67, 13, 20)
 
-[node name="Turret2" parent="." instance=ExtResource("11_0r2u8")]
+[node name="Turret2" parent="Node3D" instance=ExtResource("11_0r2u8")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -8, 0, 91)
 
-[node name="Turret3" parent="." instance=ExtResource("11_0r2u8")]
+[node name="Turret3" parent="Node3D" instance=ExtResource("11_0r2u8")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 24, 0, -10)
+
+[node name="Turret4" parent="Node3D" instance=ExtResource("11_0r2u8")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 7, 45, 44)
+
+[node name="Turret5" parent="Node3D" instance=ExtResource("11_0r2u8")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -114, 21, 32)
+
+[node name="Turret6" parent="Node3D" instance=ExtResource("11_0r2u8")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -175, 21, -16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -207,3 +219,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4147, -4.76837e-07, 24.45
 
 [node name="sign_hospital" parent="." instance=ExtResource("15_m3xii")]
 transform = Transform3D(-0.00972129, 0, 0.999953, 0, 1, 0, -0.999953, 0, -0.00972129, -70.5879, 4.76837e-07, 10.7699)
+
+[node name="MegaSkyscraper" parent="." instance=ExtResource("13_mrmrv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -212, 0, 5)
