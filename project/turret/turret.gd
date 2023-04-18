@@ -5,6 +5,7 @@ var target_in_range := false
 @onready var barrel := $Node3D/Node3D2
 @onready var animation_player := $AnimationPlayer
 @onready var projectile_scene := preload("res://projectile/projectile.tscn")
+@onready var explosion_scene := preload("res://Explosion Scene.tscn")
 @onready var base := $Node3D
 @onready var target: PhysicsBody3D = get_node("/root/World1/Ship")
 @onready var friendly_fire_detector: RayCast3D = %FriendlyFireDetector
@@ -15,10 +16,18 @@ func _process(_delta):
 	if not target_in_range:
 		return
 
-	look_at_target()
+	_look_at_target()
 
 
-func look_at_target():
+func destroy():
+	var explosion = explosion_scene.instantiate()
+	get_parent().add_child(explosion)
+	explosion.global_position = global_position
+
+	queue_free()
+
+
+func _look_at_target():
 	base.look_at(target.global_transform.origin, Vector3.UP)
 	base.rotation.x = 0
 	base.rotation.z = 0
@@ -68,3 +77,7 @@ func _on_targeting_area_body_exited(body: Node3D):
 
 	target_in_range = false
 	shoot_timer.stop()
+
+
+func _on_ground_detector_body_exited(_body):
+	destroy()

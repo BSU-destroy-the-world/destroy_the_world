@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://mkgrx18bhr46"]
+[gd_scene load_steps=35 format=3 uid="uid://mkgrx18bhr46"]
 
 [ext_resource type="Script" path="res://turret/turret.gd" id="1_a1ec7"]
 
@@ -6,7 +6,8 @@
 top_radius = 0.3
 height = 0.8
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0mvxq"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nja7x"]
+height = 1.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fbqk1"]
 resource_name = "BlackBaseRailGunTurret1"
@@ -327,8 +328,8 @@ material = SubResource("StandardMaterial3D_5dohc")
 [sub_resource type="SphereMesh" id="SphereMesh_qikqd"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_rcl36"]
-height = 200.0
-radius = 40.0
+height = 250.0
+radius = 50.0
 
 [sub_resource type="Animation" id="Animation_jgjt7"]
 length = 0.001
@@ -406,7 +407,10 @@ _data = {
 "shoot": SubResource("Animation_fvk2e")
 }
 
-[node name="Turret" type="StaticBody3D"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_un1q7"]
+height = 0.5
+
+[node name="Turret" type="StaticBody3D" groups=["destroyable"]]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 script = ExtResource("1_a1ec7")
 
@@ -416,15 +420,16 @@ visible = false
 mesh = SubResource("CylinderMesh_a2rv0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-shape = SubResource("BoxShape3D_0mvxq")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("CylinderShape3D_nja7x")
 
 [node name="BaseRailGunTurret2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, -8.52651e-15, 0, 8.52651e-15, 0.4, 0, -3.57628e-08, -0.013801)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, -8.52651e-15, 0, 8.52651e-15, 0.4, 0, 0.1, 0)
 mesh = SubResource("ArrayMesh_5w7jr")
 skeleton = NodePath("")
 
 [node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="MidleRailGunTurret2" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, -8.52651e-15, 0, 8.52651e-15, 0.4, 0.00794576, 0.3764, -0.0643208)
@@ -547,6 +552,13 @@ libraries = {
 "": SubResource("AnimationLibrary_afbgf")
 }
 
+[node name="GroundDetector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GroundDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+shape = SubResource("CylinderShape3D_un1q7")
+
 [connection signal="body_entered" from="TargetingArea" to="." method="_on_targeting_area_body_entered"]
 [connection signal="body_exited" from="TargetingArea" to="." method="_on_targeting_area_body_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="body_exited" from="GroundDetector" to="." method="_on_ground_detector_body_exited"]
