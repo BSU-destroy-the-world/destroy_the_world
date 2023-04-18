@@ -1,0 +1,79 @@
+[gd_scene load_steps=16 format=3 uid="uid://bdkjipjb67rfa"]
+
+[ext_resource type="Texture2D" uid="uid://kbwksex5fmuv" path="res://blue_edit.png" id="1"]
+[ext_resource type="Script" path="res://Spatial.gd" id="1_cfrdy"]
+[ext_resource type="Texture2D" uid="uid://cu7yesvj7mphk" path="res://green_edit.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://2kt71ggodk03" path="res://red_edit.png" id="3"]
+[ext_resource type="Shader" path="res://BOTW_Explosion.gdshader" id="4"]
+
+[sub_resource type="FastNoiseLite" id="1"]
+
+[sub_resource type="NoiseTexture2D" id="2"]
+seamless = true
+noise = SubResource("1")
+
+[sub_resource type="ShaderMaterial" id="3"]
+render_priority = 0
+shader = ExtResource("4")
+shader_parameter/fire_color = Color(0.99, 0.31, 0.01, 1)
+shader_parameter/fire_strength = 10.0
+shader_parameter/warble_strength = 0.2
+shader_parameter/time_scale = 1.0
+shader_parameter/alpha_scissor = 0.23
+shader_parameter/red_texture = ExtResource("3")
+shader_parameter/green_texture = ExtResource("2")
+shader_parameter/blue_texture = ExtResource("1")
+shader_parameter/noise_texture = SubResource("2")
+
+[sub_resource type="Gradient" id="Gradient_ptshe"]
+offsets = PackedFloat32Array(0, 0.405797, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.670588, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o8hyl"]
+gradient = SubResource("Gradient_ptshe")
+
+[sub_resource type="Curve" id="6"]
+min_value = -100.0
+max_value = 100.0
+_data = [Vector2(0, 63.6364), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="7"]
+curve = SubResource("6")
+
+[sub_resource type="ParticleProcessMaterial" id="8"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 3, 0)
+radial_accel_min = 0.47
+radial_accel_max = 0.47
+radial_accel_curve = SubResource("7")
+angle_min = 720.0
+angle_max = 720.0
+scale_min = 2.2
+scale_max = 2.2
+color_ramp = SubResource("GradientTexture1D_o8hyl")
+
+[sub_resource type="QuadMesh" id="9"]
+
+[sub_resource type="Environment" id="10"]
+glow_enabled = true
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_cfrdy")
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96595, 0)
+material_override = SubResource("3")
+emitting = false
+amount = 64
+one_shot = true
+speed_scale = 0.5
+explosiveness = 1.0
+interpolate = false
+local_coords = true
+process_material = SubResource("8")
+draw_pass_1 = SubResource("9")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("10")

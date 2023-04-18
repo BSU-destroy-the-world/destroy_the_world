@@ -4,7 +4,7 @@ const SPEED := 40.0
 
 @onready var raycast := $RayCast3D
 @onready var impact_sphere: Area3D = $ImpactSphere
-@onready var explosion_scene := preload("res://Explosion Scene.tscn")
+@onready var explosion_scene := preload("res://Spatial.tscn")
 
 
 func _process(_delta):
