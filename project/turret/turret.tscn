@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://mkgrx18bhr46"]
+[gd_scene load_steps=34 format=3 uid="uid://mkgrx18bhr46"]
 
 [ext_resource type="Script" path="res://turret/turret.gd" id="1_a1ec7"]
 
@@ -326,6 +326,10 @@ material = SubResource("StandardMaterial3D_5dohc")
 
 [sub_resource type="SphereMesh" id="SphereMesh_qikqd"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_rcl36"]
+height = 200.0
+radius = 40.0
+
 [sub_resource type="Animation" id="Animation_jgjt7"]
 length = 0.001
 tracks/0/type = "value"
@@ -402,10 +406,9 @@ _data = {
 "shoot": SubResource("Animation_fvk2e")
 }
 
-[node name="Turret" type="StaticBody3D" node_paths=PackedStringArray("target")]
+[node name="Turret" type="StaticBody3D"]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 script = ExtResource("1_a1ec7")
-target = NodePath("Node3D/Node3D2/StorageGunTurret1/Barrel")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
@@ -526,13 +529,24 @@ initial_velocity_max = 3.0
 angle_max = 360.0
 color = Color(0.411765, 0.411765, 0.411765, 1)
 
+[node name="FriendlyFireDetector" type="RayCast3D" parent="Node3D/Node3D2/StorageGunTurret1/Barrel/Slide/ProjectileSpawn"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -100)
+
+[node name="TargetingArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TargetingArea"]
+shape = SubResource("CylinderShape3D_rcl36")
+
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 3.0
-autostart = true
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_afbgf")
 }
 
+[connection signal="body_entered" from="TargetingArea" to="." method="_on_targeting_area_body_entered"]
+[connection signal="body_exited" from="TargetingArea" to="." method="_on_targeting_area_body_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

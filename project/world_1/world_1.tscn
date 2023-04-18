@@ -64,6 +64,7 @@ shape = SubResource("ConcavePolygonShape3D_e2dxl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78146, 17.2047, 36.079)
 
 [node name="Roads" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 
 [node name="road_intersection" parent="Roads" instance=ExtResource("19_3uw1v")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14.735, -9.53674e-07, 15.4212)
