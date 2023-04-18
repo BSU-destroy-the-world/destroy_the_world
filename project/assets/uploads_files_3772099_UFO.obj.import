@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d3p8piyvps72c"
+path="res://.godot/imported/uploads_files_3772099_UFO.obj-4474d0107239e67d5e055327636fe2a6.mesh"
+
+[deps]
+
+files=["res://.godot/imported/uploads_files_3772099_UFO.obj-4474d0107239e67d5e055327636fe2a6.mesh"]
+
+source_file="res://assets/uploads_files_3772099_UFO.obj"
+dest_files=["res://.godot/imported/uploads_files_3772099_UFO.obj-4474d0107239e67d5e055327636fe2a6.mesh", "res://.godot/imported/uploads_files_3772099_UFO.obj-4474d0107239e67d5e055327636fe2a6.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

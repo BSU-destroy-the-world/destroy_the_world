@@ -1,8 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://bai0gbnvbdsct"]
+[gd_scene load_steps=24 format=3 uid="uid://bai0gbnvbdsct"]
 
 [ext_resource type="PackedScene" uid="uid://rl3xprstjp30" path="res://ship/ship.tscn" id="1_8bswx"]
 [ext_resource type="Script" path="res://world_1/world_1.gd" id="1_drgjj"]
 [ext_resource type="PackedScene" uid="uid://mkgrx18bhr46" path="res://turret/turret.tscn" id="11_0r2u8"]
+[ext_resource type="PackedScene" uid="uid://dq1tw436lah6i" path="res://assets/Kenny_City_Kit/detail_umbrellaDetailed.glb" id="13_vik8u"]
+[ext_resource type="PackedScene" uid="uid://bw7wik7e58nqd" path="res://assets/Kenny_City_Kit/detail_overhangWide.glb" id="14_vef36"]
+[ext_resource type="PackedScene" uid="uid://bl3cxy0pribl3" path="res://assets/Kenny_City_Kit/sign_hospital.glb" id="15_m3xii"]
 [ext_resource type="Texture2D" uid="uid://bxh5i82l4cwvf" path="res://assets/textures/086_hdrmaps_com_free.exr" id="18_e23w5"]
 [ext_resource type="PackedScene" uid="uid://c6rny72tyy425" path="res://assets/Kenny_Street_Kit/road_intersection.glb" id="19_3uw1v"]
 [ext_resource type="PackedScene" uid="uid://c41c77pojpg7d" path="res://assets/Kenny_Street_Kit/road_crossing.glb" id="20_s8c5c"]
@@ -195,3 +198,12 @@ transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -8, 0, 91)
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 24, 0, -10)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="detail_umbrellaDetailed" parent="." instance=ExtResource("13_vik8u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7981, 4.76837e-07, 19.8443)
+
+[node name="detail_overhangWide" parent="." instance=ExtResource("14_vef36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4147, -4.76837e-07, 24.458)
+
+[node name="sign_hospital" parent="." instance=ExtResource("15_m3xii")]
+transform = Transform3D(-0.00972129, 0, 0.999953, 0, 1, 0, -0.999953, 0, -0.00972129, -70.5879, 4.76837e-07, 10.7699)
