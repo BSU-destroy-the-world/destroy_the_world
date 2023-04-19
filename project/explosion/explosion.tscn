@@ -1,0 +1,162 @@
+[gd_scene load_steps=19 format=3 uid="uid://bjio7ttsckxw1"]
+
+[ext_resource type="Script" path="res://explosion/explosion.gd" id="1_ev43b"]
+[ext_resource type="Shader" path="res://explosion/explosion.gdshader" id="2_p31ap"]
+[ext_resource type="Texture2D" uid="uid://kbwksex5fmuv" path="res://explosion/blue_edit.png" id="3_dgrs8"]
+[ext_resource type="Texture2D" uid="uid://cu7yesvj7mphk" path="res://explosion/green_edit.png" id="4_ey3ww"]
+[ext_resource type="Texture2D" uid="uid://2kt71ggodk03" path="res://explosion/red_edit.png" id="5_scjot"]
+[ext_resource type="AudioStream" uid="uid://dbt4a6pdogpje" path="res://assets/Sounds/explosion.wav" id="6_rkgkx"]
+
+[sub_resource type="FastNoiseLite" id="1"]
+
+[sub_resource type="NoiseTexture2D" id="2"]
+seamless = true
+noise = SubResource("1")
+
+[sub_resource type="ShaderMaterial" id="3"]
+render_priority = 0
+shader = ExtResource("2_p31ap")
+shader_parameter/fire_color = Color(0.99, 0.31, 0.01, 1)
+shader_parameter/fire_strength = 10.0
+shader_parameter/warble_strength = 0.2
+shader_parameter/time_scale = 1.0
+shader_parameter/alpha_scissor = 0.23
+shader_parameter/red_texture = ExtResource("5_scjot")
+shader_parameter/green_texture = ExtResource("4_ey3ww")
+shader_parameter/blue_texture = ExtResource("3_dgrs8")
+shader_parameter/noise_texture = SubResource("2")
+
+[sub_resource type="Gradient" id="Gradient_ptshe"]
+offsets = PackedFloat32Array(0, 0.405797, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0.670588, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o8hyl"]
+gradient = SubResource("Gradient_ptshe")
+
+[sub_resource type="Curve" id="6"]
+min_value = -100.0
+max_value = 100.0
+_data = [Vector2(0, 63.6364), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="7"]
+curve = SubResource("6")
+
+[sub_resource type="ParticleProcessMaterial" id="8"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 3, 0)
+radial_accel_min = 0.47
+radial_accel_max = 0.47
+radial_accel_curve = SubResource("7")
+angle_min = 720.0
+angle_max = 720.0
+scale_min = 2.2
+scale_max = 2.2
+color_ramp = SubResource("GradientTexture1D_o8hyl")
+
+[sub_resource type="QuadMesh" id="9"]
+
+[sub_resource type="Animation" id="Animation_v2l1d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Decal:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(4, 4, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_6ahn0"]
+resource_name = "explode"
+length = 10.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Particles:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Decal:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 8.5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(4, 4, 4), Vector3(4, 4, 4), Vector3(0.05, 0.05, 0.05)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer3D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nnnoa"]
+_data = {
+"RESET": SubResource("Animation_v2l1d"),
+"explode": SubResource("Animation_6ahn0")
+}
+
+[node name="Explosion" type="Node3D"]
+script = ExtResource("1_ev43b")
+
+[node name="Particles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96595, 0)
+material_override = SubResource("3")
+emitting = false
+amount = 64
+one_shot = true
+speed_scale = 0.5
+explosiveness = 1.0
+interpolate = false
+process_material = SubResource("8")
+draw_pass_1 = SubResource("9")
+
+[node name="Decal" type="Decal" parent="."]
+size = Vector3(4, 4, 4)
+texture_albedo = ExtResource("5_scjot")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_rkgkx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nnnoa")
+}

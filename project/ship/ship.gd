@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 25.0
+const SPEED = 20.0
 const DODGE_SPEED = 150.0
 const DODGE_SLOWDOWN = 10.0
 

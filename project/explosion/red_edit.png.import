@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kbwksex5fmuv"
-path.s3tc="res://.godot/imported/blue_edit.png-0580cbab806d53826d3be8cb4e3ef89a.s3tc.ctex"
+uid="uid://2kt71ggodk03"
+path.s3tc="res://.godot/imported/red_edit.png-f550371ea5e9a1d69c95c885e297eb19.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://blue_edit.png"
-dest_files=["res://.godot/imported/blue_edit.png-0580cbab806d53826d3be8cb4e3ef89a.s3tc.ctex"]
+source_file="res://explosion/red_edit.png"
+dest_files=["res://.godot/imported/red_edit.png-f550371ea5e9a1d69c95c885e297eb19.s3tc.ctex"]
 
 [params]
 

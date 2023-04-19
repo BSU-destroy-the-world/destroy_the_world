@@ -366,39 +366,25 @@ tracks/1/keys = {
 resource_name = "shoot"
 length = 1.5
 step = 0.05
-tracks/0/type = "method"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("Node3D/Node3D2/StorageGunTurret1/Barrel/Slide:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"shoot"
-}]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node3D/Node3D2/StorageGunTurret1/Barrel/Slide:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.05, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0.3), Vector3(0, 0, 0)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Node3D/Node3D2/StorageGunTurret1/Barrel/Slide/ProjectileSpawn/CPUParticles3D:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D/Node3D2/StorageGunTurret1/Barrel/Slide/ProjectileSpawn/CPUParticles3D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -412,25 +398,24 @@ _data = {
 }
 
 [node name="Turret" type="StaticBody3D" groups=["destroyable"]]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 script = ExtResource("1_a1ec7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 1, 0)
 visible = false
 mesh = SubResource("CylinderMesh_a2rv0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 1.5, 0)
 shape = SubResource("CylinderShape3D_nja7x")
 
 [node name="BaseRailGunTurret2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, -8.52651e-15, 0, 8.52651e-15, 0.4, 0, 0.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -2.13163e-14, 0, 2.13163e-14, 1, 0, 0.25, 0)
 mesh = SubResource("ArrayMesh_5w7jr")
 skeleton = NodePath("")
 
 [node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0.25, 0)
 
 [node name="MidleRailGunTurret2" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, -8.52651e-15, 0, 8.52651e-15, 0.4, 0.00794576, 0.3764, -0.0643208)
@@ -540,11 +525,14 @@ unique_name_in_owner = true
 target_position = Vector3(0, 0, -100)
 
 [node name="TargetingArea" type="Area3D" parent="."]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TargetingArea"]
 shape = SubResource("CylinderShape3D_rcl36")
 
 [node name="GroundDetector" type="Area3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GroundDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)

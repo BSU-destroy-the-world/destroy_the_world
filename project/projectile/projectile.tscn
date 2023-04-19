@@ -28,20 +28,20 @@ top_level = true
 script = ExtResource("1_o8xy7")
 
 [node name="AmmoRocketModern" type="MeshInstance3D" parent="."]
-transform = Transform3D(33, 0, 0, 0, 33, 0, 0, 0, 33, 0, 0, 0)
+transform = Transform3D(-33, 0, -2.88495e-06, 0, 33, 0, 2.88495e-06, 0, -33, 0, 0, 0)
 mesh = ExtResource("2_t6vlx")
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.692685)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.578828)
 amount = 1
 lifetime = 0.1
 speed_scale = 20.0
 mesh = SubResource("CapsuleMesh_3y27t")
-gravity = Vector3(0, 0, -1)
+gravity = Vector3(0, 0, 1)
 color = Color(1, 1, 0, 1)
 
 [node name="CPUParticles3D3" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0942088, 0.0252024, -1.04393)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0942088, 0.0252024, 0.640367)
 amount = 20
 speed_scale = 3.0
 randomness = 1.0
@@ -49,7 +49,7 @@ lifetime_randomness = 0.2
 mesh = SubResource("SphereMesh_kidml")
 emission_shape = 1
 emission_sphere_radius = 0.1
-direction = Vector3(0, -1, 0)
+direction = Vector3(0, 1, 0)
 spread = 5.0
 gravity = Vector3(0, 0.1, 0)
 initial_velocity_min = 4.0
@@ -59,13 +59,13 @@ scale_amount_max = 0.3
 color_ramp = SubResource("Gradient_hx27u")
 
 [node name="CPUParticles3D4" type="CPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0942088, -0.0744253, -1.04393)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0942088, -0.0744253, 0.640367)
 amount = 20
 speed_scale = 3.0
 randomness = 1.0
 lifetime_randomness = 0.2
 mesh = SubResource("SphereMesh_kidml")
-direction = Vector3(0, -1, 0)
+direction = Vector3(0, 1, 0)
 spread = 10.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 4.0

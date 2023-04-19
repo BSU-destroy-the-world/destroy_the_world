@@ -11,6 +11,13 @@ var _buildings_destroyed = 0
 
 
 func _process(delta):
+	if Input.is_action_just_pressed("debug_restart"):
+		_time = 0
+		_last_building_destroyed_time = 0
+		_score = 0
+		_buildings_count = 0
+		_buildings_destroyed = 0
+
 	_time += delta
 	_last_building_destroyed_time += delta
 
