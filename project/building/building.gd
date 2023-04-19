@@ -1,5 +1,6 @@
 extends StaticBody3D
 
+var damage_taken = 0
 var destroyed = false
 
 @onready var animation_player := $AnimationPlayer
@@ -18,6 +19,11 @@ func _ready():
 
 func destroy():
 	if destroyed:
+		return
+
+	damage_taken += 10
+
+	if damage_taken < collision_shape.shape.extents.y * 2:
 		return
 
 	destroyed = true
