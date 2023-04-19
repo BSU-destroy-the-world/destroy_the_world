@@ -1,6 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://mkgrx18bhr46"]
+[gd_scene load_steps=36 format=3 uid="uid://mkgrx18bhr46"]
 
 [ext_resource type="Script" path="res://turret/turret.gd" id="1_a1ec7"]
+[ext_resource type="AudioStream" uid="uid://d0w08q15f68d5" path="res://assets/Sounds/missle_launch.wav" id="2_01x7s"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_a2rv0"]
 top_radius = 0.3
@@ -557,6 +558,11 @@ one_shot = true
 libraries = {
 "": SubResource("AnimationLibrary_afbgf")
 }
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_01x7s")
+attenuation_model = 2
+volume_db = 7.207
 
 [connection signal="body_entered" from="TargetingArea" to="." method="_on_targeting_area_body_entered"]
 [connection signal="body_exited" from="TargetingArea" to="." method="_on_targeting_area_body_exited"]

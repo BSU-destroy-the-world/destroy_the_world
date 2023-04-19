@@ -7,7 +7,10 @@ var _is_players := false
 @onready var raycast := $RayCast3D
 @onready var impact_sphere: Area3D = $ImpactSphere
 @onready var explosion_scene := preload("res://Spatial.tscn")
+@onready var audio_player := $AudioStreamPlayer3D
 
+func _ready():
+	audio_player.play(0)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("debug_restart"):

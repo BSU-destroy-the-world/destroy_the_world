@@ -10,6 +10,7 @@ var target_in_range := false
 @onready var target: PhysicsBody3D = get_node("/root/World1/Ship")
 @onready var friendly_fire_detector: RayCast3D = %FriendlyFireDetector
 @onready var shoot_timer: Timer = $ShootTimer
+@onready var audio_player := $AudioStreamPlayer3D
 
 
 func _process(_delta):
@@ -45,6 +46,7 @@ func _will_friendly_fire():
 
 func shoot():
 	animation_player.play("shoot")
+	audio_player.play(0)
 
 	var projectile = projectile_scene.instantiate()
 	get_tree().get_root().add_child(projectile)

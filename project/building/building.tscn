@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bk8n1ede05bb0"]
+[gd_scene load_steps=7 format=3 uid="uid://bk8n1ede05bb0"]
 
 [ext_resource type="Script" path="res://building/building.gd" id="1_dootp"]
+[ext_resource type="AudioStream" uid="uid://ccg7oij2gm21v" path="res://assets/Sounds/building_destroyed.wav" id="2_nkf45"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ei2wd"]
 size = Vector3(0.4, 0.4, 0.4)
@@ -125,4 +126,5 @@ libraries = {
 "": SubResource("AnimationLibrary_tklft")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_nkf45")

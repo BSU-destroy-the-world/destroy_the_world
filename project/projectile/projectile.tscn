@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnug38cqorhoj"]
+[gd_scene load_steps=10 format=3 uid="uid://bnug38cqorhoj"]
 
 [ext_resource type="Script" path="res://projectile/projectile.gd" id="1_o8xy7"]
 [ext_resource type="ArrayMesh" uid="uid://b3tyyoghhf4m2" path="res://assets/Kenny_Weapons/ammo_rocketModern.obj" id="2_t6vlx"]
+[ext_resource type="AudioStream" uid="uid://d1ql6731x6v8w" path="res://assets/Sounds/missle_travel.wav" id="3_gw38g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fa77j"]
 vertex_color_use_as_albedo = true
@@ -81,3 +82,10 @@ target_position = Vector3(0, 0, -1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ImpactSphere"]
 shape = SubResource("SphereShape3D_nu17v")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_gw38g")
+volume_db = -4.324
+pitch_scale = 0.75
+max_distance = 30.0
+doppler_tracking = 1

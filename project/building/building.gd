@@ -5,6 +5,7 @@ var destroyed = false
 @onready var animation_player := $AnimationPlayer
 @onready var collision_shape := $CollisionShape3D
 @onready var particles := $CPUParticles3D
+@onready var audio_player := $AudioStreamPlayer3D
 
 
 func _ready():
@@ -22,3 +23,4 @@ func destroy():
 	destroyed = true
 	StatTracker.building_destroyed()
 	animation_player.play("destroy")
+	audio_player.play(0)
