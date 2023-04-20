@@ -46,6 +46,9 @@ func set_is_players():
 func explode(impact_position: Vector3, impact_normal: Vector3, impact_object: Object):
 	impact_sphere.global_position = impact_position
 
+	if impact_object.is_in_group("ship"):
+		impact_object.damage()
+
 	for object in impact_sphere.get_overlapping_bodies():
 		if object.is_in_group("destroyable"):
 			object.destroy()

@@ -4,12 +4,14 @@ const SPEED = 20.0
 const DODGE_SPEED = 150.0
 const DODGE_SLOWDOWN = 10.0
 
+@export var health := 5
 @export var projectile_scene: PackedScene
 
 var can_dodge := true
 var dodging := false
 var target: Node3D = null
 var target_collision_point := Vector3.ZERO
+var damage_taken := 0
 
 @onready var camera_mount := $CameraMount
 @onready var dodge_cooldown_timer := $DodgeCooldownTimer
@@ -92,6 +94,13 @@ func _physics_process(_delta):
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 
 	move_and_slide()
+
+
+func damage():
+	damage_taken += 1
+
+	if damage_taken >= health:
+		StatTracker.add_death()
 
 
 func _get_camera_oriented_input() -> Vector3:

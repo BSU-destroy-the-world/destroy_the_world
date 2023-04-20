@@ -37,6 +37,10 @@ enabled=PackedStringArray()
 
 import/fbx/enabled=false
 
+[gui]
+
+theme/custom="res://common/theme.tres"
+
 [input]
 
 move_left={
