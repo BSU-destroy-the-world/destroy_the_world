@@ -24,6 +24,7 @@ func destroy():
 	damage_taken += 10
 
 	if damage_taken < collision_shape.shape.extents.y * 2:
+		animation_player.play("damage")
 		return
 
 	destroyed = true

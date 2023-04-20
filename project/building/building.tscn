@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bk8n1ede05bb0"]
+[gd_scene load_steps=8 format=3 uid="uid://bk8n1ede05bb0"]
 
 [ext_resource type="Script" path="res://building/building.gd" id="1_dootp"]
 [ext_resource type="AudioStream" uid="uid://ccg7oij2gm21v" path="res://assets/Sounds/building_destroyed.wav" id="2_nkf45"]
@@ -47,7 +47,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_w82f1"]
 resource_name = "destroy"
-length = 3.0
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -55,7 +55,7 @@ tracks/0/path = NodePath("CPUParticles3D:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -67,7 +67,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(3),
+"times": PackedFloat32Array(10),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -81,10 +81,10 @@ tracks/2/path = NodePath(".:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 10),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -20, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -100, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -93,15 +93,32 @@ tracks/3/path = NodePath(".:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.1, 3.3, 3.5, 3.7, 3.9, 4.1, 4.3, 4.5, 4.6, 4.8, 5, 5.2, 5.4, 5.6, 5.8, 6, 6.1, 6.3, 6.5, 6.7, 6.9, 7.1, 7.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0.9, 1.1, 1), Vector3(1.1, 1, 0.9), Vector3(0.9, 1.1, 1), Vector3(1.1, 1, 0.9), Vector3(1, 0.9, 1.1)]
+"values": [Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0.9, 1.1, 1), Vector3(1.1, 1, 0.9), Vector3(0.9, 1.1, 1), Vector3(1.1, 1, 0.9), Vector3(1, 0.9, 1.1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0.9, 1.1, 1), Vector3(1.1, 1, 0.9), Vector3(0.9, 1.1, 1), Vector3(1.1, 1, 0.9), Vector3(1, 0.9, 1.1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0.9, 1.1, 1), Vector3(1.1, 1, 0.9), Vector3(0.9, 1.1, 1), Vector3(1.1, 1, 0.9), Vector3(1, 0.9, 1.1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0.9, 1.1, 1), Vector3(1.1, 1, 0.9), Vector3(0.9, 1.1, 1), Vector3(1.1, 1, 0.9), Vector3(1, 0.9, 1.1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0.9, 1.1, 1), Vector3(1.1, 1, 0.9), Vector3(0.9, 1.1, 1), Vector3(1.1, 1, 0.9), Vector3(1, 0.9, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_owid7"]
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.9, 1, 0.9), Vector3(1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tklft"]
 _data = {
 "RESET": SubResource("Animation_mlele"),
+"damage": SubResource("Animation_owid7"),
 "destroy": SubResource("Animation_w82f1")
 }
 
