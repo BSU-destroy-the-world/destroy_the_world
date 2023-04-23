@@ -1,7 +1,9 @@
-[gd_scene load_steps=50 format=3 uid="uid://bai0gbnvbdsct"]
+[gd_scene load_steps=55 format=3 uid="uid://bai0gbnvbdsct"]
 
 [ext_resource type="PackedScene" uid="uid://rl3xprstjp30" path="res://ship/ship.tscn" id="1_8bswx"]
 [ext_resource type="Script" path="res://world_1/world_1.gd" id="1_drgjj"]
+[ext_resource type="Texture2D" uid="uid://c2irgkigewgb8" path="res://assets/textures/TexturesCom_Grass_1K_normal.png" id="3_4a4sr"]
+[ext_resource type="Texture2D" uid="uid://bqpwnf0ew3l6w" path="res://assets/textures/TexturesCom_Ground_Grass01_2x2_512_normal.png" id="4_7067x"]
 [ext_resource type="PackedScene" uid="uid://mkgrx18bhr46" path="res://turret/turret.tscn" id="11_0r2u8"]
 [ext_resource type="PackedScene" uid="uid://7ab4s2pmdoxd" path="res://building/mega_skyscraper.tscn" id="13_mrmrv"]
 [ext_resource type="PackedScene" uid="uid://dq1tw436lah6i" path="res://assets/Kenny_City_Kit/detail_umbrellaDetailed.glb" id="13_vik8u"]
@@ -41,6 +43,8 @@
 [ext_resource type="PackedScene" uid="uid://y8qmbk0brfvk" path="res://assets/Kenny_Street_Kit/construction_light.glb" id="40_q0x0t"]
 [ext_resource type="PackedScene" uid="uid://c038hcpuh1qnj" path="res://assets/Kenny_Street_Kit/light_squareDouble.glb" id="41_4f4lq"]
 [ext_resource type="PackedScene" uid="uid://c6a5ms2k5igvu" path="res://assets/Kenny_Street_Kit/light_curved.glb" id="42_ovut6"]
+[ext_resource type="PackedScene" uid="uid://p0bneg5d7uev" path="res://assets/Mountains/mountain_2.glb" id="44_hhu8p"]
+[ext_resource type="PackedScene" uid="uid://dusvfperx6x0v" path="res://assets/Mountains/mountain_1.glb" id="45_3nfx6"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_g48eh"]
 panorama = ExtResource("18_e23w5")
@@ -52,21 +56,30 @@ sky_material = SubResource("PanoramaSkyMaterial_g48eh")
 background_mode = 2
 sky = SubResource("Sky_liwid")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4oqny"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01qg2"]
+albedo_color = Color(0.286275, 0.345098, 0.0313726, 1)
+albedo_texture = ExtResource("3_4a4sr")
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_88e5l"]
-width = 1024
-height = 1024
-seamless = true
-as_normal_map = true
-noise = SubResource("FastNoiseLite_4oqny")
+[sub_resource type="PlaneMesh" id="PlaneMesh_pymjg"]
+material = SubResource("StandardMaterial3D_01qg2")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jfk15"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xqlj"]
 albedo_color = Color(0, 0.462745, 0.14902, 1)
-albedo_texture = SubResource("NoiseTexture2D_88e5l")
+albedo_texture = ExtResource("4_7067x")
+uv1_scale = Vector3(400, 400, 400)
+uv1_triplanar_sharpness = 0.000560886
+uv1_world_triplanar = true
+uv2_triplanar_sharpness = 1.46408
+uv2_world_triplanar = true
+texture_filter = 5
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_x3bjd"]
+lightmap_size_hint = Vector2i(25002, 25002)
 material = SubResource("StandardMaterial3D_7xqlj")
+add_uv2 = true
+uv2_padding = 2.39
 size = Vector2(5000, 5000)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_e2dxl"]
@@ -81,16 +94,228 @@ environment = SubResource("Environment_et8jg")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.398182, 0.753744, -0.522801, -0.0665359, 0.592161, 0.803068, 0.91489, -0.284982, 0.285939, 0, 16.6962, 0)
 
-[node name="Ground" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_x3bjd")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_e2dxl")
-
 [node name="Ship" parent="." instance=ExtResource("1_8bswx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78146, 17.2047, 36.079)
+
+[node name="Planes" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -34.7257, 0.320741, 30.4302)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, 5.24646, 0.320741, 30.4302)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, 45.1592, 0.187316, 30.4302)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D3/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -74.7295, 0.187316, 30.4302)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D4/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -114.838, 0.187316, 30.4302)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D5/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -34.1791, 0.187316, 168.818)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D7/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -33.3973, 0.187316, 248.444)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D11"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D11/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -72.9683, 0.187316, 248.665)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D12"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D12/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -112.977, 0.187316, 249.247)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D13"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D13/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -152.929, 0.187316, 250.048)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D14"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D14/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -193.136, 0.187316, 250.692)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D15"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D15/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -231.972, 0.187316, 251.629)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D16"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D16/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -271.61, 0.187316, 252.024)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D17"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D17/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -311.692, 0.187316, 252.516)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D18"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D18/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(21.7366, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -361.439, 0.187316, 253.174)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D19"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D19/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -73.9832, 0.187316, 168.818)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D8/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -114.227, 0.187316, 168.818)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D9"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D9/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(10.3268, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -154.214, 0.187316, 170.141)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D10"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D10/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Planes"]
+transform = Transform3D(39.7918, 0, 0, 0, 9.11195, 0, 0, 0, 20.3946, -178.902, 0.187316, 30.4302)
+mesh = SubResource("PlaneMesh_pymjg")
+skeleton = NodePath("../Ground")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/MeshInstance3D6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/MeshInstance3D6/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59314, 6.97593, -15.7743)
+shape = SubResource("ConcavePolygonShape3D_jfk15")
+
+[node name="Ground" type="MeshInstance3D" parent="Planes"]
+mesh = SubResource("PlaneMesh_x3bjd")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Planes/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Planes/Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_e2dxl")
 
 [node name="Buildings" type="Node3D" parent="."]
 
@@ -292,30 +517,33 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -199.7
 [node name="MegaSkyscraper2" parent="Buildings" instance=ExtResource("13_mrmrv")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10.4552, 0, 100.36)
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Turrets" type="Node3D" parent="."]
 
-[node name="Turret" parent="Node3D" instance=ExtResource("11_0r2u8")]
+[node name="Turret" parent="Turrets" instance=ExtResource("11_0r2u8")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -67, 13, 20)
 
-[node name="Turret7" parent="Node3D" instance=ExtResource("11_0r2u8")]
+[node name="Turret7" parent="Turrets" instance=ExtResource("11_0r2u8")]
 transform = Transform3D(2.49964, 0, 0.0426276, 0, 2.5, 0, -0.0426276, 0, 2.49964, -224.231, 13, 240.898)
 
-[node name="Turret2" parent="Node3D" instance=ExtResource("11_0r2u8")]
+[node name="Turret2" parent="Turrets" instance=ExtResource("11_0r2u8")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -34.9672, 0, 75.3647)
 
-[node name="Turret3" parent="Node3D" instance=ExtResource("11_0r2u8")]
+[node name="Turret9" parent="Turrets" instance=ExtResource("11_0r2u8")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -148.322, 20.3622, 154.169)
+
+[node name="Turret3" parent="Turrets" instance=ExtResource("11_0r2u8")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 24, 0, -10)
 
-[node name="Turret4" parent="Node3D" instance=ExtResource("11_0r2u8")]
+[node name="Turret4" parent="Turrets" instance=ExtResource("11_0r2u8")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 7, 45, 44)
 
-[node name="Turret8" parent="Node3D" instance=ExtResource("11_0r2u8")]
+[node name="Turret8" parent="Turrets" instance=ExtResource("11_0r2u8")]
 transform = Transform3D(-2.49965, 0, -0.0417116, 0, 2.5, 0, 0.0417116, 0, -2.49965, -312.825, 45, 239.609)
 
-[node name="Turret5" parent="Node3D" instance=ExtResource("11_0r2u8")]
+[node name="Turret5" parent="Turrets" instance=ExtResource("11_0r2u8")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -114, 21, 32)
 
-[node name="Turret6" parent="Node3D" instance=ExtResource("11_0r2u8")]
+[node name="Turret6" parent="Turrets" instance=ExtResource("11_0r2u8")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, -175, 21, -16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -996,3 +1224,15 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 94.891
 
 [node name="light_curved22" parent="Street Props" instance=ExtResource("42_ovut6")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 94.8912, 0, 186.276)
+
+[node name="mountain_2" parent="." instance=ExtResource("44_hhu8p")]
+transform = Transform3D(-8.48991e-06, 0, 191.516, 0, 114.16, 0, -194.226, 0, -8.37141e-06, 2327.88, -8.56955, 67.096)
+
+[node name="mountain_4" parent="." instance=ExtResource("44_hhu8p")]
+transform = Transform3D(-8.48991e-06, 0, 191.516, 0, 114.16, 0, -194.226, 0, -8.37141e-06, -2810.46, -8.56955, 67.096)
+
+[node name="mountain_1" parent="." instance=ExtResource("45_3nfx6")]
+transform = Transform3D(284.917, 0, 0, 0, 131.636, 0, 0, 0, 181.011, 385.714, -47.7693, 2282.59)
+
+[node name="mountain_3" parent="." instance=ExtResource("45_3nfx6")]
+transform = Transform3D(284.917, 0, 0, 0, 131.636, 0, 0, 0, 181.011, 384.917, -47.7692, -2668.72)
